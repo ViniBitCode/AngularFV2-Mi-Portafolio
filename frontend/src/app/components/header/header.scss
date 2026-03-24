@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap');
+
+#header {
+  // Structure settings
+  height: 10vh;
+  border-bottom: 1px solid #0b2027;
+  background-color: #4f6272;
+
+  // Display settings
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-text {
+  // Font settings
+  color: white;
+  font-family: 'Funnel Display', sans-serif;
+  font-size: 2vw;
+  margin-left: 1vw;
+}
+
+.right-text {
+  // Structure settings
+  margin-right: 1vw;
+  gap: 2vw;
+
+  // Display settings
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right-text > button {
+  // Structure settings
+  background-color: #4f6272;
+  height: 10vh;
+  border: none;
+  border-radius: 25%;
+
+  // Animation with Hover
+  transition: 0.2s;
+
+  // Font settings
+  font-family: 'Funnel Display', sans-serif;
+  font-size: 1vw;
+  color: rgb(192, 192, 192);
+}
+
+.right-text > button:hover {
+  color: white;
+  background-color: #576e81;
+  cursor: pointer;
+}
