@@ -3,8 +3,12 @@
 #header {
   // Structure settings
   height: 10vh;
-  border-bottom: 1px solid #0b2027;
-  background-color: #4f6272;
+  border-bottom: 2px solid #3e339c;
+  background-color: rgba($color: #0e0b42, $alpha: 0.5);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
 
   // Display settings
   display: flex;
@@ -16,8 +20,30 @@
   // Font settings
   color: white;
   font-family: 'Funnel Display', sans-serif;
-  font-size: 2vw;
+  font-size: 1.5vw;
   margin-left: 1vw;
+
+  display: inline-flex;
+  align-items: center;
+}
+
+.left-text-dash {
+  // Font settings
+  color: white;
+  font-family: 'Funnel Display', sans-serif;
+  margin-left: 1px;
+  font-size: 1.5vw;
+  animation: dash-loop 0.8s step-start infinite;
+}
+
+@keyframes dash-loop {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 .right-text {
@@ -33,7 +59,7 @@
 
 .right-text > button {
   // Structure settings
-  background-color: #4f6272;
+  background-color: transparent;
   height: 10vh;
   border: none;
   border-radius: 25%;
@@ -49,6 +75,5 @@
 
 .right-text > button:hover {
   color: white;
-  background-color: #576e81;
   cursor: pointer;
 }

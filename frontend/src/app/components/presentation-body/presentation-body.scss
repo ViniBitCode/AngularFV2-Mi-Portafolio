@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap');
+
+#presentation-body-background {
+  // Structure settings
+  background-color: #131313;
+
+  // Display settings
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.presentation-card-first-type {
+  // Structure settings
+  height: 60vh;
+  width: 100vw;
+  background-color: rgba($color: #1e293b, $alpha: 0.5);
+
+  // Display settings
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.first-presentation {
+  // Display settings
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // Font settings
+  color: white;
+  font-family: 'Funnel Display', sans-serif;
+  font-size: 4vh;
+}
+
+.presentation-card-second-type {
+  // Structure settings
+  height: 60vh;
+  width: 100vw;
+  background-color: rgba($color: #0b1120, $alpha: 0.5);
+}
