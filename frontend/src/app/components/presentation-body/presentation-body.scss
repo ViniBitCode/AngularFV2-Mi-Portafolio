@@ -16,14 +16,15 @@
   height: 60vh;
   width: 100vw;
   background-color: rgba($color: #1e293b, $alpha: 0.5);
-
+  
   // Display settings
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
-.first-presentation {
+.head-presentation {
   // Display settings
   display: flex;
   justify-content: center;
@@ -33,6 +34,24 @@
   color: white;
   font-family: 'Funnel Display', sans-serif;
   font-size: 4vh;
+}
+
+.body-presentation {
+  // Display settings
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  // Structure settings
+  height: 10vh;
+  width: 50vw;
+  margin-top: 5vh;
+
+  // Font settings
+  color: white;
+  font-family: 'Funnel Display', sans-serif;
+  font-size: 2vh;
 }
 
 .presentation-card-second-type {
