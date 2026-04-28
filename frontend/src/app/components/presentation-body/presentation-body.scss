@@ -56,7 +56,35 @@
 
 .presentation-card-second-type {
   // Structure settings
-  height: 60vh;
+  height: 120vh;
   width: 100vw;
   background-color: rgba($color: #0b1120, $alpha: 0.5);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.projects-presentation {
+  // Display settings
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2vh;
+
+  // Font settings
+  color: white;
+  font-family: 'Funnel Display', sans-serif;
+  font-size: 4vh;
+}
+
+.projects-presentation > div {
+
+  // Structure settings
+  height: 30vh;
+  width: 30vw;
+  margin-top: 5vh;
+  border: 1px solid white;
+
+
 }
