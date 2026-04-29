@@ -14,7 +14,7 @@
 .presentation-card-first-type {
   // Structure settings
   height: 60vh;
-  width: 100vw;
+  width: 100%;
   background-color: rgba($color: #1e293b, $alpha: 0.5);
   
   // Display settings
@@ -57,7 +57,7 @@
 .presentation-card-second-type {
   // Structure settings
   height: 120vh;
-  width: 100vw;
+  width: 100%;
   background-color: rgba($color: #0b1120, $alpha: 0.5);
 
   display: flex;
@@ -69,13 +69,12 @@
 .projects-presentation {
   // Display settings
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: auto auto auto;
   gap: 2vh;
 
   // Font settings
   color: white;
   font-family: 'Funnel Display', sans-serif;
-  font-size: 4vh;
 }
 
 .projects-presentation > div {
@@ -83,8 +82,12 @@
   // Structure settings
   height: 30vh;
   width: 30vw;
-  margin-top: 5vh;
+  margin-top: 3vh;
   border: 1px solid white;
+}
 
-
+.project-image {
+  // Structure settings
+  height: 100%;
+  width: 100%;
 }
