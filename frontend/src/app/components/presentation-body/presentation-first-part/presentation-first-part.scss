@@ -1,0 +1,71 @@
+.presentation-card-first-type {
+  // Structure settings
+  height: 60vh;
+  width: 100%;
+  background-color: rgba($color: #1e293b, $alpha: 0.5);
+  
+  // Display settings
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.head-presentation {
+  // Display settings
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // Font settings
+  color: white;
+  font-family: 'Funnel Display', sans-serif;
+  font-size: 4vh;
+}
+
+.body-presentation {
+  // Display settings
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  // Structure settings
+  height: 10vh;
+  width: 50vw;
+
+  // Font settings
+  color: white;
+  font-family: 'Funnel Display', sans-serif;
+  font-size: 2vh;
+}
+
+.skills-presentation-head {
+    // Display settings
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2vh;
+
+  // Font settings
+  color: white;
+  font-family: 'Funnel Display', sans-serif;
+  font-size: 4vh;
+}
+
+.skills-presentation-icons {
+  // Display settings
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2vh;
+}
+
+.skills-presentation-icons > img {
+  transition: 0.3s ease;
+}
+
+.skills-presentation-icons > img:hover {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}

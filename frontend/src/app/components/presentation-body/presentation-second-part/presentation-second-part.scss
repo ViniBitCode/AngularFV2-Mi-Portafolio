@@ -1,0 +1,49 @@
+.head-presentation {
+  // Display settings
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // Font settings
+  color: white;
+  font-family: 'Funnel Display', sans-serif;
+  font-size: 4vh;
+}
+
+.presentation-card-second-type {
+  // Structure settings
+  height: 120vh;
+  width: 100%;
+  background-color: rgba($color: #0b1120, $alpha: 0.5);
+
+  // Display settings
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.projects-presentation {
+  // Display settings
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 2vw;
+
+  // Font settings
+  color: white;
+  font-family: 'Funnel Display', sans-serif;
+}
+
+.projects-presentation > div {
+  // Structure settings
+  height: 30vh;
+  width: 30vw;
+  margin-top: 3vh;
+  border: 1px solid white;
+}
+
+.project-image {
+  // Structure settings
+  height: 100%;
+  width: 100%;
+}
