@@ -34,12 +34,19 @@
   font-family: 'Funnel Display', sans-serif;
 }
 
-.projects-presentation > div {
+.project-card {
   // Structure settings
   height: 30vh;
   width: 30vw;
   margin-top: 3vh;
   border: 1px solid white;
+  transition: 0.1s  ease;
+}
+
+.project-card:hover {
+  opacity: 0.5;
+  transition: 0.1s opacity ease;
+  cursor: pointer;
 }
 
 .project-image {
