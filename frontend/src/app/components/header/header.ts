@@ -12,7 +12,7 @@ export class Header {
     if (nombre_componente) {
       nombre_componente.scrollIntoView({
         behavior: 'smooth', // Animación suave
-        block: 'start', // Alinea al inicio de la sección
+        block: 'start',     // Alinea al inicio de la sección
         inline: 'nearest',
       });
     }

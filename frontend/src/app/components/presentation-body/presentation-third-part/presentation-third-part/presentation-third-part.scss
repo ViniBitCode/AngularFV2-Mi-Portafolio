@@ -17,6 +17,9 @@
   justify-content: center;
   align-items: center;
 
+  // Structure settings
+  margin: 1vh 0vh 1vh 0vh;
+
   // Font settings
   color: white;
   font-family: 'Funnel Display', sans-serif;
@@ -28,4 +31,35 @@
   background-color: rgba($color: #30415c, $alpha: 0.5);
   height: 50vh;
   width: 30vw;
+}
+
+.form-consultant-container {
+  // Structure
+  margin: 0vw 1vw 0vw 1vw;
+  width: 28vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // Font settings
+  color: white;
+  font-family: 'Funnel Display', sans-serif;
+  font-size: 2vh;
+}
+
+#consultant-text-input,
+#consultant-email-input {
+  height: 3vh;
+  width: 27vw;
+  margin: 1vh 0 2vh 0;
+  box-sizing: border-box;
+}
+
+#consultant-text-message {
+  width: 100%;
+  margin: 1vh 0 2vh 0;
+  height: 12vh;
+  resize: none;
+  box-sizing: border-box;
 }
