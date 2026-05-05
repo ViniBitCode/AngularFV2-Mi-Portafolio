@@ -24,9 +24,19 @@
   flex-direction: column;
 }
 
+.horizontal-line {
+  border-left: 1px solid white;
+  height: 60vh;
+}
+
 .projects-presentation-container {
-  display: grid;
-  grid-template-columns: auto auto;
+  // Flex settings
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
 
-
+  // Structure settings
+  width: 95vw;
+  margin-top: 6vh;
 }

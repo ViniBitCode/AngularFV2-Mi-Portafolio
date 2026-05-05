@@ -1,8 +1,12 @@
+@use '../../../../../styles/mixin';
+.head-presentation {
+  @extend %presentation-white-text;
+}
+
 .rigth-projects-container {
-    background-color: rgba($color: #1e293b, $alpha: 0.5);
-    border: 1px solid white;
-    height: 70vh;
-    width: 35vw;
-    margin-left: 3vw;
-    border-radius: 5%;
+  background-color: rgba($color: #1e293b, $alpha: 0.5);
+  border: 1px solid white;
+  height: 60vh;
+  width: 30vw;
+  border-radius: 5%;
 }

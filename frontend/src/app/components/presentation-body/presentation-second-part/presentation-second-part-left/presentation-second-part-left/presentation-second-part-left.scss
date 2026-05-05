@@ -1,7 +1,36 @@
+@use '../../../../../../styles/mixin';
+.head-presentation {
+  @extend %presentation-white-text;
+}
+
 .left-projects-container {
+  // Flex Setting
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+
+  // Structure Setting
   background-color: rgba($color: #1e293b, $alpha: 0.5);
   border: 1px solid white;
-  height: 70vh;
-  width: 35vw;
+  height: 60vh;
+  width: 30vw;
   border-radius: 5%;
+}
+
+.left-project-image-carrousel,
+.left-project-description-text {
+  height: 20vh;
+  width: 30vw;
+  border: 1px solid white;
+}
+
+.left-project-description-text {
+  color: white;
+  font-family: 'Funnel Display', sans-serif;
+  font-size: 2vh;
+}
+
+.left-project-description-text > p {
+  padding: 5px;
 }
