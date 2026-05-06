@@ -1,4 +1,7 @@
 @use '../../../../../../styles/mixin';
+
+@import "@coreui/coreui/dist/css/coreui.min.css";
+
 .head-presentation {
   @extend %presentation-white-text;
 }
@@ -33,4 +36,16 @@
 
 .left-project-description-text > p {
   padding: 5px;
+}
+
+.carrousel-image {
+  height: 19vh;
+  width: 30vw;
+  transition: transform 0.6s ease-in-out !important;
+}
+
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active {
+  display: block !important;
 }
