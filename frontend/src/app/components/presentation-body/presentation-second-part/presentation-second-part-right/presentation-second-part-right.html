@@ -5,7 +5,28 @@
   </div>
 
   <div class="rigth-project-image-carrousel">
-
+    <!-- Importado desde https://coreui.io/angular/docs/components/carousel/#how-it-works  -->
+    <c-carousel [dark]="true" [wrap]="false" transition="slide" >
+      <c-carousel-indicators />
+      <c-carousel-inner>
+        @for (slide of slides; track slide.src) {
+          <c-carousel-item>
+            <img
+              alt="{{ slide.title }}"
+              class="carrousel-image"
+              loading="lazy"
+              src="{{ slide.src }}"
+            />
+            <c-carousel-caption class="d-none d-md-block">
+              <h3>{{ slide.title }}</h3>
+              <p>{{ slide.subtitle }}</p>
+            </c-carousel-caption>
+          </c-carousel-item>
+        }
+      </c-carousel-inner>
+      <c-carousel-control caption="Previous" direction="prev" />
+      <c-carousel-control caption="Next" direction="next" />
+    </c-carousel>
   </div>
 
   <div class="right-project-description-text">

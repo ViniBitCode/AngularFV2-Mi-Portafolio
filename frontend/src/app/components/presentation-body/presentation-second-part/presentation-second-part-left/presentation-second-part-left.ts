@@ -22,6 +22,7 @@ import {
     CarouselControlComponent,
   ],
 })
+
 export class PresentationSecondPartLeft implements OnInit {
   cantImagenes: number = 8;
   slides: any[] = new Array(this.cantImagenes).fill({ id: -1, src: '', title: '', subtitle: '' });

@@ -7,9 +7,8 @@
   
   // Display settings
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  flex-direction: column;
 }
 
 .head-presentation {
@@ -24,34 +23,32 @@
   font-size: 4vh;
 }
 
-.body-presentation {
-  // Display settings
+.left-first-presentation, .rigth-first-presentation {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-
-  // Structure settings
-  height: 10vh;
-  width: 50vw;
-
-  // Font settings
-  color: white;
-  font-family: 'Funnel Display', sans-serif;
-  font-size: 2vh;
+  flex-direction: column;
+  height: 60vh;
+  width: 40vw;
+  border: 1px solid white;
 }
 
-.skills-presentation-head {
-    // Display settings
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 2vh;
+.left-upper-part, .left-under-part {
+  height: 28vh;
+  width: 40vw;
+  border: 1px solid white;
 
-  // Font settings
-  color: white;
-  font-family: 'Funnel Display', sans-serif;
-  font-size: 4vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.left-photo {
+  border: 1px solid white;
+  border-radius: 50%;
+  background-color: antiquewhite;
+  height: 20vh;
+  width: 10vw;
 }
 
 .skills-presentation-icons {
@@ -70,3 +67,9 @@
   transform: scale(1.2);
   transition: transform 0.3s ease;
 }
+
+.horizontal-line {
+  border-left: 1px solid white;
+  height: 60vh;
+}
+

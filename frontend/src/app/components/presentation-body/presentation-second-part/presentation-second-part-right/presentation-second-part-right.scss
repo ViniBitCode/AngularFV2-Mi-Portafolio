@@ -3,10 +3,28 @@
   @extend %presentation-white-text;
 }
 
+@import "@coreui/coreui/dist/css/coreui.min.css";
+
+.head-presentation {
+  @extend %presentation-white-text;
+}
+
 .rigth-projects-container {
   background-color: rgba($color: #1e293b, $alpha: 0.5);
   border: 1px solid white;
   height: 60vh;
   width: 30vw;
   border-radius: 5%;
+}
+
+.carrousel-image {
+  height: 19vh;
+  width: 30vw;
+  transition: transform 0.6s ease-in-out !important;
+}
+
+.carousel-item-next,
+.carousel-item-prev,
+.carousel-item.active {
+  display: block !important;
 }

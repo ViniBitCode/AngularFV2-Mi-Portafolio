@@ -6,4 +6,9 @@ import { Component } from '@angular/core';
   templateUrl: './presentation-first-part.html',
   styleUrl: './presentation-first-part.scss',
 })
-export class PresentationFirstPart {}
+export class PresentationFirstPart {
+  verCV() {
+    const url = '/archives/CV - Facundo H Vinitzca.pdf'
+    window.open(url, '_blank');
+  }
+}
