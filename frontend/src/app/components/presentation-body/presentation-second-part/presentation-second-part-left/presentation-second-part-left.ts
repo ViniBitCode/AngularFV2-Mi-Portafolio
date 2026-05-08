@@ -76,5 +76,6 @@ export class PresentationSecondPartLeft implements OnInit {
       title: '8vo Proyecto',
       subtitle: 'Mi portafolio con Angular',
     };
+    
   }
 }

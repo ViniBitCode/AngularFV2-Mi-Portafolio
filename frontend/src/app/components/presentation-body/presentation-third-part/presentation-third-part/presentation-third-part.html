@@ -5,13 +5,74 @@
     </div>
     <div class="form-consultant-container">
       <form [formGroup]="consultForm">
-        <label for="full-name-consultant"> Nombre completo </label><br />
-        <input id="consultant-text-input" type="text" formControlName="full_name_consultant" /><br />
-        <label for="email-consultant"> Email </label><br />
+        <!-- NOMBRE -->
+        <label for="consultant-text-input">Nombre completo</label><br />
+        <input
+          id="consultant-text-input"
+          type="text"
+          formControlName="full_name_consultant"
+        /><br />
+        @if (consultForm.get('full_name_consultant'); as ctrl) {
+          @if (ctrl.invalid && ctrl.touched) {
+            <small>
+              @if (ctrl.errors?.['required']) {
+                <span>El nombre es requerido.</span>
+              }
+              @if (ctrl.errors?.['minlength']) {
+                <span>Mínimo 3 caracteres.</span>
+              }
+            </small>
+          }
+        }
+
+        <!-- EMAIL -->
+        <label for="consultant-email-input">Email</label><br />
         <input id="consultant-email-input" type="email" formControlName="email_consultant" /><br />
-        <label for="message-consultant"> Mensaje </label><br />
-        <textarea id="consultant-text-message" formControlName="message_consultant"></textarea><br />
-        <button type="submit" class="send-button">Enviar</button>
+        @if (consultForm.get('email_consultant'); as ctrl) {
+          @if (ctrl.invalid && ctrl.touched) {
+            <small>
+              @if (ctrl.errors?.['required']) {
+                <span>El email es requerido.</span>
+              }
+              @if (ctrl.errors?.['email']) {
+                <span>Formato de email inválido.</span>
+              }
+            </small>
+          }
+        }
+
+        <!-- MENSAJE -->
+        <label for="consultant-text-message">Mensaje</label><br />
+        <textarea id="consultant-text-message" formControlName="message_consultant"></textarea
+        ><br />
+        @if (consultForm.get('message_consultant'); as ctrl) {
+          @if (ctrl.invalid && ctrl.touched) {
+            <small>
+              @if (ctrl.errors?.['required']) {
+                <span>El mensaje es requerido.</span>
+              }
+              @if (ctrl.errors?.['minlength']) {
+                <span>Mínimo 10 caracteres.</span>
+              }
+              @if (ctrl.errors?.['maxlength']) {
+                <span>Máximo 500 caracteres.</span>
+              }
+            </small>
+          }
+        }
+
+        <!-- BOTÓN -->
+        <button (click)="onSendMail()" [disabled]="isSending || consultForm.invalid">
+          {{ isSending ? 'Enviando...' : 'Enviar mail' }}
+        </button>
+
+        <!-- FEEDBACK ENVÍO -->
+        @if (status === 'success') {
+          <p>✅ Mensaje enviado con éxito.</p>
+        }
+        @if (status === 'error') {
+          <p>❌ Error al enviar. Intentá de nuevo.</p>
+        }
       </form>
     </div>
   </div>
