@@ -1,20 +1,19 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { GITHUB_PROFILE_URL } from '../../data/socials';
+import { ScrollService } from '../../services/scroll.service';
 
 @Component({
   selector: 'app-header',
-  imports: [],
   templateUrl: './header.html',
   styleUrl: './header.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Header {
-  navigate(id: string) {
-    const nombre_componente = document.getElementById(id);
-    if (nombre_componente) {
-      nombre_componente.scrollIntoView({
-        behavior: 'smooth', // Animación suave
-        block: 'start',     // Alinea al inicio de la sección
-        inline: 'nearest',
-      });
-    }
+  private readonly scrollService = inject(ScrollService);
+
+  readonly githubUrl = GITHUB_PROFILE_URL;
+
+  navigate(id: string): void {
+    this.scrollService.scrollTo(id);
   }
 }

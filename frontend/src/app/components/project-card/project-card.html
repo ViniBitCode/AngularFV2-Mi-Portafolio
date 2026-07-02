@@ -1,0 +1,61 @@
+<article class="project-card">
+  <div class="card-media">
+    @if (project().image; as image) {
+      <img
+        class="card-image"
+        [src]="image"
+        [alt]="'Captura de ' + project().title"
+        loading="lazy"
+      />
+    } @else {
+      <div class="card-placeholder">
+        @if (placeholderIcon(); as icon) {
+          <img [src]="icon" [alt]="project().techs[0].name" />
+        }
+        <span>{{ project().techs[0].name }}</span>
+      </div>
+    }
+    <span class="card-category">{{ project().category }}</span>
+  </div>
+
+  <div class="card-body">
+    <header class="card-header">
+      <h3 class="card-title">{{ project().title }}</h3>
+      <span class="card-year">{{ project().year }}</span>
+    </header>
+
+    <p class="card-description">{{ project().description }}</p>
+
+    <ul class="card-techs">
+      @for (tech of project().techs; track tech.name) {
+        <li class="tech-badge">
+          @if (tech.icon) {
+            <img [src]="tech.icon" [alt]="tech.name" />
+          }
+          {{ tech.name }}
+        </li>
+      }
+    </ul>
+
+    <div class="card-links">
+      <a
+        class="card-link card-link--github"
+        [href]="project().githubUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Código
+      </a>
+      @if (project().liveUrl; as liveUrl) {
+        <a
+          class="card-link card-link--live"
+          [href]="liveUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ver demo
+        </a>
+      }
+    </div>
+  </div>
+</article>

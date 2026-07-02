@@ -1,0 +1,36 @@
+// =============================================================
+//  Design tokens del portafolio
+//  Fuente única de colores, tipografía y medidas.
+//  Importar con `@use '...variables' as vars;`
+// =============================================================
+
+// ---- Colores ----
+$color-bg: #0b0e1a; // Fondo general
+$color-surface: #1e293b; // Superficie de secciones
+$color-surface-2: #0b1120; // Superficie alternativa (más oscura)
+$color-card: #131a2e; // Fondo de tarjetas
+
+$color-accent: #5a5af8; // Acento principal (violeta/azul)
+$color-accent-strong: #3e339c; // Acento para bordes/detalles
+$color-accent-soft: rgba(90, 90, 248, 0.15); // Fondo suave del acento
+
+$color-text: #ffffff;
+$color-text-muted: #c0c0c0;
+$color-text-dim: #8a94a7;
+$color-border: rgba(255, 255, 255, 0.12);
+
+// ---- Tipografía ----
+$font-main: 'Funnel Display', sans-serif;
+
+// ---- Radios y espaciado ----
+$radius-sm: 8px;
+$radius-md: 14px;
+$radius-lg: 22px;
+
+// ---- Sombras ----
+$shadow-card: 0 10px 30px rgba(0, 0, 0, 0.35);
+$shadow-card-hover: 0 18px 45px rgba(90, 90, 248, 0.25);
+
+// ---- Breakpoints ----
+$bp-mobile: 640px;
+$bp-tablet: 960px;

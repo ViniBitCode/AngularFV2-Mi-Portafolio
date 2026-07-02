@@ -1,11 +1,58 @@
 <section id="presentation-second-container">
-  <div class="head-presentation">
-    <h1>Mis</h1>
-    <h1 style="color: rgb(90, 90, 248); margin-left: 1vh">Proyectos</h1>
+  <div class="section-heading">
+    <h2>Mis <span class="accent">Proyectos</span></h2>
   </div>
-  <div class="projects-presentation-container">
-    <app-presentation-second-part-left></app-presentation-second-part-left>
-    <div class="horizontal-line"></div>
-    <app-presentation-second-part-right></app-presentation-second-part-right>
+
+  <p class="section-subtitle">
+    Un recorrido por lo que fui construyendo: de mis primeras páginas estáticas a
+    APIs con Spring Boot y apps full stack con Angular.
+  </p>
+
+  <div class="filters" role="tablist" aria-label="Filtrar proyectos por categoría">
+    @for (filter of filters; track filter) {
+      <button
+        type="button"
+        class="filter-chip"
+        role="tab"
+        [class.active]="activeFilter() === filter"
+        [attr.aria-selected]="activeFilter() === filter"
+        (click)="setFilter(filter)"
+      >
+        {{ filter }}
+      </button>
+    }
+  </div>
+
+  <div class="projects-grid">
+    @for (project of filteredProjects(); track project.id) {
+      <app-project-card [project]="project" />
+    }
+  </div>
+
+  <!-- Puente con mi presentación de GitHub -->
+  <div class="github-strip">
+    <h3 class="github-strip-title">Mi actividad en <span class="accent">GitHub</span></h3>
+    <div class="github-strip-cards">
+      <img
+        class="github-graph"
+        src="https://github-readme-activity-graph.vercel.app/graph?username=ViniBitCode&theme=tokyo-night&hide_border=true&area=true"
+        alt="Gráfico de actividad de GitHub de ViniBitCode"
+        loading="lazy"
+      />
+      <img
+        class="github-streak"
+        src="https://streak-stats.demolab.com/?user=ViniBitCode&theme=tokyonight&hide_border=true"
+        alt="Racha de contribuciones de GitHub de ViniBitCode"
+        loading="lazy"
+      />
+    </div>
+    <a
+      class="github-cta"
+      [href]="githubUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Ver mi perfil completo en GitHub →
+    </a>
   </div>
 </section>

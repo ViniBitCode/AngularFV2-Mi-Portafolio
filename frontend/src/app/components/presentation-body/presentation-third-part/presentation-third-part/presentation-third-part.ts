@@ -1,11 +1,10 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MailService } from '../../../../services/mailService';
 
 @Component({
   selector: 'app-presentation-third-part',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './presentation-third-part.html',
   styleUrl: './presentation-third-part.scss',
 })
@@ -29,7 +28,7 @@ export class PresentationThirdPart {
   isSending = false;
   status: 'idle' | 'success' | 'error' = 'idle';
 
-  constructor(private mailService: MailService) {}
+  private readonly mailService = inject(MailService);
 
   onSendMail(): void {
     if (this.consultForm.invalid) return;

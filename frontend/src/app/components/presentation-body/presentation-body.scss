@@ -1,7 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap');
+@use '../../../styles/variables' as vars;
 
 #presentation-body-background {
-  // Structure settings
-  background-color: #131313;
+  background-color: vars.$color-bg;
 }
-

@@ -1,65 +1,100 @@
-#presentation-third-container {
-  // Structure settings
-  height: 100vh;
-  width: 100%;
-  background-color: rgba($color: #1e293b, $alpha: 0.5);
+@use '../../../../../styles/variables' as vars;
+@use '../../../../../styles/mixin' as mix;
 
-  // Display settings
+#presentation-third-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: rgba(vars.$color-surface, 0.5);
+
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  padding: 6rem 5vw 4rem;
+  box-sizing: border-box;
 }
 
-.head-presentation {
-  // Display settings
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  // Structure settings
-  margin: 1vh 0vh 1vh 0vh;
-
-  // Font settings
-  color: white;
-  font-family: 'Funnel Display', sans-serif;
-  font-size: 4vh;
+.section-heading {
+  @include mix.section-heading;
+  margin-bottom: 1.6rem;
 }
 
 .presentation-form-container {
-  border-radius: 5%;
-  background-color: rgba($color: #30415c, $alpha: 0.5);
-  height: 50vh;
-  width: 30vw;
-}
-
-.form-consultant-container {
-  // Structure
-  margin: 0vw 1vw 0vw 1vw;
-  width: 28vw;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  // Font settings
-  color: white;
-  font-family: 'Funnel Display', sans-serif;
-  font-size: 2vh;
-}
-
-#consultant-text-input,
-#consultant-email-input {
-  height: 3vh;
-  width: 27vw;
-  margin: 1vh 0 2vh 0;
-  box-sizing: border-box;
-}
-
-#consultant-text-message {
   width: 100%;
-  margin: 1vh 0 2vh 0;
-  height: 12vh;
-  resize: none;
+  max-width: 480px;
+  background-color: rgba(vars.$color-card, 0.8);
+  border: 1px solid vars.$color-border;
+  border-radius: vars.$radius-lg;
+  box-shadow: vars.$shadow-card;
+  padding: 2rem 1.8rem;
+  font-family: vars.$font-main;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  color: vars.$color-text-muted;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+input,
+textarea {
+  font-family: vars.$font-main;
+  font-size: 0.95rem;
+  color: vars.$color-text;
+  background: vars.$color-surface-2;
+  border: 1px solid vars.$color-border;
+  border-radius: vars.$radius-sm;
+  padding: 0.7rem 0.9rem;
+  margin-bottom: 1rem;
+  width: 100%;
   box-sizing: border-box;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: vars.$color-accent;
+  }
+}
+
+textarea {
+  height: 120px;
+  resize: none;
+}
+
+small {
+  display: block;
+  color: #ff8080;
+  font-size: 0.8rem;
+  margin: -0.7rem 0 0.9rem;
+}
+
+button {
+  @include mix.accent-button;
+  width: 100%;
+  margin-top: 0.4rem;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+.feedback {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+
+  &--success {
+    color: #7ee787;
+  }
+
+  &--error {
+    color: #ff8080;
+  }
 }

@@ -1,0 +1,36 @@
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-name">Facundo Vinitzca<span class="footer-dash">_</span></span>
+      <p class="footer-tagline">
+        Backend en construcción — Java, Spring Boot &amp; Angular.
+      </p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Navegación del pie de página">
+      @for (link of navLinks; track link.target) {
+        <button type="button" (click)="navigate(link.target)">{{ link.label }}</button>
+      }
+    </nav>
+
+    <ul class="footer-socials">
+      @for (social of socials; track social.name) {
+        <li>
+          <a
+            [href]="social.url"
+            [attr.aria-label]="social.name"
+            [title]="social.name"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img [src]="social.icon" [alt]="social.name" />
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+
+  <div class="footer-credit">
+    <p>© {{ currentYear }} Facundo Vinitzca — Hecho con Angular, SSR y ☕</p>
+  </div>
+</footer>
