@@ -1,0 +1,108 @@
+@use '../../../styles/variables' as vars;
+
+#header {
+  height: 10vh;
+  min-height: 56px;
+  width: 100%;
+  border-bottom: 2px solid vars.$color-accent-strong;
+  background-color: vars.$color-header-bg;
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+.left-text {
+  display: inline-flex;
+  align-items: center;
+  color: vars.$color-text;
+  font-family: vars.$font-main;
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
+}
+
+.left-text-dash {
+  margin-left: 1px;
+  animation: dash-loop 0.8s step-start infinite;
+}
+
+@keyframes dash-loop {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.right-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(0.6rem, 2vw, 2rem);
+}
+
+.right-text > button {
+  background-color: transparent;
+  height: 10vh;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  font-family: vars.$font-main;
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  color: vars.$color-text-muted;
+
+  &:hover {
+    color: vars.$color-text;
+  }
+}
+
+.header-toggles {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+// Botones de idioma y tema: pills compactas, no heredan el alto del nav.
+.right-text .toggle-btn {
+  height: auto;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: vars.$color-text-muted;
+  background: transparent;
+  border: 1px solid vars.$color-border;
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+
+  &:hover {
+    color: vars.$color-text;
+    border-color: vars.$color-accent;
+    background: vars.$color-accent-soft;
+  }
+}
+
+.github-link {
+  display: flex;
+  align-items: center;
+  opacity: 0.75;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+
+  img {
+    width: 22px;
+    height: 22px;
+  }
+}

@@ -1,0 +1,80 @@
+<section id="presentation-third-container">
+  <div class="presentation-form-container">
+    <div class="section-heading">
+      <h2>
+        {{ ui().contact.title[0] }}
+        <span class="accent">{{ ui().contact.title[1] }}</span>
+      </h2>
+    </div>
+
+    <form [formGroup]="consultForm">
+      <!-- NOMBRE -->
+      <label for="consultant-text-input">{{ ui().contact.nameLabel }}</label>
+      <input
+        id="consultant-text-input"
+        type="text"
+        formControlName="full_name_consultant"
+      />
+      @if (consultForm.get('full_name_consultant'); as ctrl) {
+        @if (ctrl.invalid && ctrl.touched) {
+          <small>
+            @if (ctrl.errors?.['required']) {
+              <span>{{ ui().contact.nameRequired }}</span>
+            }
+            @if (ctrl.errors?.['minlength']) {
+              <span>{{ ui().contact.nameMinLength }}</span>
+            }
+          </small>
+        }
+      }
+
+      <!-- EMAIL -->
+      <label for="consultant-email-input">{{ ui().contact.emailLabel }}</label>
+      <input id="consultant-email-input" type="email" formControlName="email_consultant" />
+      @if (consultForm.get('email_consultant'); as ctrl) {
+        @if (ctrl.invalid && ctrl.touched) {
+          <small>
+            @if (ctrl.errors?.['required']) {
+              <span>{{ ui().contact.emailRequired }}</span>
+            }
+            @if (ctrl.errors?.['email']) {
+              <span>{{ ui().contact.emailInvalid }}</span>
+            }
+          </small>
+        }
+      }
+
+      <!-- MENSAJE -->
+      <label for="consultant-text-message">{{ ui().contact.messageLabel }}</label>
+      <textarea id="consultant-text-message" formControlName="message_consultant"></textarea>
+      @if (consultForm.get('message_consultant'); as ctrl) {
+        @if (ctrl.invalid && ctrl.touched) {
+          <small>
+            @if (ctrl.errors?.['required']) {
+              <span>{{ ui().contact.messageRequired }}</span>
+            }
+            @if (ctrl.errors?.['minlength']) {
+              <span>{{ ui().contact.messageMinLength }}</span>
+            }
+            @if (ctrl.errors?.['maxlength']) {
+              <span>{{ ui().contact.messageMaxLength }}</span>
+            }
+          </small>
+        }
+      }
+
+      <!-- BOTÓN -->
+      <button (click)="onSendMail()" [disabled]="isSending || consultForm.invalid">
+        {{ isSending ? ui().contact.sending : ui().contact.send }}
+      </button>
+
+      <!-- FEEDBACK ENVÍO -->
+      @if (status === 'success') {
+        <p class="feedback feedback--success">{{ ui().contact.success }}</p>
+      }
+      @if (status === 'error') {
+        <p class="feedback feedback--error">{{ ui().contact.error }}</p>
+      }
+    </form>
+  </div>
+</section>

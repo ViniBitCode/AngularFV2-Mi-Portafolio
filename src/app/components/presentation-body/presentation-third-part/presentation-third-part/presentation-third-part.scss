@@ -1,0 +1,100 @@
+@use '../../../../../styles/variables' as vars;
+@use '../../../../../styles/mixin' as mix;
+
+#presentation-third-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: vars.$color-section-1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6rem 5vw 4rem;
+  box-sizing: border-box;
+}
+
+.section-heading {
+  @include mix.section-heading;
+  margin-bottom: 1.6rem;
+}
+
+.presentation-form-container {
+  width: 100%;
+  max-width: 480px;
+  background-color: vars.$color-form-bg;
+  border: 1px solid vars.$color-border;
+  border-radius: vars.$radius-lg;
+  box-shadow: vars.$shadow-card;
+  padding: 2rem 1.8rem;
+  font-family: vars.$font-main;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  color: vars.$color-text-muted;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+input,
+textarea {
+  font-family: vars.$font-main;
+  font-size: 0.95rem;
+  color: vars.$color-text;
+  background: vars.$color-surface-2;
+  border: 1px solid vars.$color-border;
+  border-radius: vars.$radius-sm;
+  padding: 0.7rem 0.9rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: vars.$color-accent;
+  }
+}
+
+textarea {
+  height: 120px;
+  resize: none;
+}
+
+small {
+  display: block;
+  color: vars.$color-error;
+  font-size: 0.8rem;
+  margin: -0.7rem 0 0.9rem;
+}
+
+button {
+  @include mix.accent-button;
+  width: 100%;
+  margin-top: 0.4rem;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+.feedback {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+
+  &--success {
+    color: vars.$color-success;
+  }
+
+  &--error {
+    color: vars.$color-error;
+  }
+}

@@ -1,0 +1,42 @@
+<section id="header">
+    <div class="left-text">
+        <h1>{{ ui().nav.brand }}</h1>
+        <span class="left-text-dash">_</span>
+    </div>
+
+    <div class="right-text">
+        <button (click)="navigate('presentation-first-container')"> {{ ui().nav.about }} </button>
+        <button (click)="navigate('presentation-second-container')"> {{ ui().nav.projects }} </button>
+        <button (click)="navigate('presentation-third-container')"> {{ ui().nav.contact }} </button>
+
+        <div class="header-toggles">
+          <button
+            class="toggle-btn"
+            type="button"
+            (click)="langService.toggle()"
+            [attr.aria-label]="langService.lang() === 'es' ? 'Switch to English' : 'Cambiar a español'"
+          >
+            {{ langService.lang() === 'es' ? 'EN' : 'ES' }}
+          </button>
+          <button
+            class="toggle-btn"
+            type="button"
+            (click)="themeService.toggle()"
+            [attr.aria-label]="themeService.theme() === 'dark' ? 'Tema claro' : 'Tema oscuro'"
+          >
+            {{ themeService.theme() === 'dark' ? '☀️' : '🌙' }}
+          </button>
+        </div>
+
+        <a
+          class="github-link"
+          [href]="githubUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+          title="GitHub"
+        >
+          <img src="icons/github_icon.svg" alt="GitHub" />
+        </a>
+    </div>
+</section>

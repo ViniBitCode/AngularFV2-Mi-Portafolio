@@ -1,0 +1,61 @@
+<section id="presentation-second-container">
+  <div class="section-heading">
+    <h2>
+      {{ ui().projects.title[0] }}
+      <span class="accent">{{ ui().projects.title[1] }}</span>
+    </h2>
+  </div>
+
+  <p class="section-subtitle">{{ ui().projects.subtitle }}</p>
+
+  <div class="filters" role="tablist" aria-label="Filtros">
+    @for (filter of filters; track filter) {
+      <button
+        type="button"
+        class="filter-chip"
+        role="tab"
+        [class.active]="activeFilter() === filter"
+        [attr.aria-selected]="activeFilter() === filter"
+        (click)="setFilter(filter)"
+      >
+        {{ filterLabel(filter) }}
+      </button>
+    }
+  </div>
+
+  <div class="projects-grid">
+    @for (project of filteredProjects(); track project.id) {
+      <app-project-card [project]="project" />
+    }
+  </div>
+
+  <!-- Puente con mi presentación de GitHub -->
+  <div class="github-strip">
+    <h3 class="github-strip-title">
+      {{ ui().projects.githubTitle[0] }}
+      <span class="accent">{{ ui().projects.githubTitle[1] }}</span>
+    </h3>
+    <div class="github-strip-cards">
+      <img
+        class="github-graph"
+        src="https://github-readme-activity-graph.vercel.app/graph?username=ViniBitCode&theme=tokyo-night&hide_border=true&area=true"
+        alt="GitHub activity graph — ViniBitCode"
+        loading="lazy"
+      />
+      <img
+        class="github-streak"
+        src="https://streak-stats.demolab.com/?user=ViniBitCode&theme=tokyonight&hide_border=true"
+        alt="GitHub streak — ViniBitCode"
+        loading="lazy"
+      />
+    </div>
+    <a
+      class="github-cta"
+      [href]="githubUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {{ ui().projects.githubCta }}
+    </a>
+  </div>
+</section>

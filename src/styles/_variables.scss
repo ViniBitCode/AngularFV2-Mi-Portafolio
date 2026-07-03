@@ -1,0 +1,52 @@
+// =============================================================
+//  Design tokens del portafolio
+//
+//  Los COLORES viven como CSS custom properties en styles.scss
+//  (:root = tema oscuro, [data-theme='light'] = tema claro) para
+//  poder cambiar de tema en runtime. Acá se exponen como variables
+//  SCSS para que los componentes las consuman con un nombre corto.
+//
+//  Importar con `@use '...variables' as vars;`
+// =============================================================
+
+// ---- Colores (referencias a los tokens de tema) ----
+$color-bg: var(--color-bg);
+$color-surface: var(--color-surface);
+$color-surface-2: var(--color-surface-2);
+$color-card: var(--color-card);
+
+$color-accent: var(--color-accent);
+$color-accent-strong: var(--color-accent-strong);
+$color-accent-hover: var(--color-accent-hover);
+$color-accent-soft: var(--color-accent-soft);
+$color-accent-border: var(--color-accent-border);
+
+$color-text: var(--color-text);
+$color-text-muted: var(--color-text-muted);
+$color-text-dim: var(--color-text-dim);
+$color-border: var(--color-border);
+
+$color-header-bg: var(--color-header-bg);
+$color-section-1: var(--color-section-1);
+$color-section-2: var(--color-section-2);
+$color-form-bg: var(--color-form-bg);
+$color-overlay: var(--color-overlay);
+
+$color-success: var(--color-success);
+$color-error: var(--color-error);
+
+// ---- Tipografía ----
+$font-main: 'Funnel Display', sans-serif;
+
+// ---- Radios ----
+$radius-sm: 8px;
+$radius-md: 14px;
+$radius-lg: 22px;
+
+// ---- Sombras ----
+$shadow-card: var(--shadow-card);
+$shadow-card-hover: var(--shadow-card-hover);
+
+// ---- Breakpoints (compile-time, no pueden ser custom properties) ----
+$bp-mobile: 640px;
+$bp-tablet: 960px;

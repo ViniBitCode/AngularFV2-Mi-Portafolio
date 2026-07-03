@@ -1,0 +1,73 @@
+<section id="presentation-first-container">
+  <div class="hero">
+    <!-- Columna izquierda: terminal + acciones -->
+    <div class="hero-identity">
+      <div class="terminal" aria-label="Terminal">
+        <div class="terminal-bar">
+          <span class="dot dot--red" aria-hidden="true"></span>
+          <span class="dot dot--yellow" aria-hidden="true"></span>
+          <span class="dot dot--green" aria-hidden="true"></span>
+          <span class="terminal-title">facundo&#64;utn:~</span>
+        </div>
+        <div class="terminal-body">
+          @for (line of termLines(); track $index) {
+            <p class="term-line" [class.term-line--cmd]="line.type === 'cmd'">
+              @if (line.type === 'cmd') {
+                <span class="prompt" aria-hidden="true">$</span>
+              }
+              <span>{{ line.text }}</span>
+            </p>
+          }
+          <span class="term-cursor" aria-hidden="true"></span>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <button class="cv-button" type="button" (click)="verCV()">
+          {{ ui().hero.cvButton }}
+        </button>
+        <ul class="social-links">
+          @for (social of socials; track social.name) {
+            <li>
+              <a
+                [href]="social.url"
+                [attr.aria-label]="social.name"
+                [title]="social.name"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img [src]="social.icon" [alt]="social.name" />
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <!-- Columna derecha: presentación + skills -->
+    <div class="hero-content">
+      <div class="hero-greeting">
+        <h1>{{ ui().hero.greeting }} <span class="accent">Facundo Vinitzca</span></h1>
+      </div>
+
+      <p class="hero-bio">{{ ui().hero.bio }}</p>
+
+      <div class="skills">
+        <h2 class="skills-title">
+          {{ ui().hero.skillsTitle[0] }}
+          <span class="accent">{{ ui().hero.skillsTitle[1] }}</span>
+        </h2>
+        <ul class="skills-chips">
+          @for (skill of skills; track skill.name) {
+            <li class="skill-chip">
+              @if (skill.icon) {
+                <img [src]="skill.icon" [alt]="''" aria-hidden="true" />
+              }
+              {{ skill.name }}
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

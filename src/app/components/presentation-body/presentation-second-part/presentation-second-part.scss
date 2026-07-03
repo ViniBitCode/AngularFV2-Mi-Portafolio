@@ -1,0 +1,152 @@
+@use '../../../../styles/variables' as vars;
+@use '../../../../styles/mixin' as mix;
+
+#presentation-second-container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: vars.$color-section-2;
+  border-bottom: 1px solid vars.$color-border;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 6rem 5vw 5rem;
+  box-sizing: border-box;
+}
+
+.section-heading {
+  @include mix.section-heading;
+}
+
+.section-subtitle {
+  max-width: 640px;
+  text-align: center;
+  color: vars.$color-text-muted;
+  font-family: vars.$font-main;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+// ---- Filtros por categoría ----
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 0.6rem 0 1.4rem;
+}
+
+.filter-chip {
+  font-family: vars.$font-main;
+  font-size: 0.9rem;
+  color: vars.$color-text-muted;
+  background: transparent;
+  border: 1px solid vars.$color-border;
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    color: vars.$color-text;
+    border-color: vars.$color-accent;
+  }
+
+  &.active {
+    color: #ffffff;
+    background: vars.$color-accent;
+    border-color: vars.$color-accent;
+  }
+}
+
+// ---- Grilla de proyectos ----
+.projects-grid {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.6rem;
+}
+
+// ---- Strip de GitHub ----
+.github-strip {
+  width: 100%;
+  max-width: 1000px;
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.github-strip-title {
+  color: vars.$color-text;
+  font-family: vars.$font-main;
+  font-size: 1.5rem;
+  font-weight: 700;
+
+  .accent {
+    color: vars.$color-accent;
+  }
+}
+
+.github-strip-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+.github-graph,
+.github-streak {
+  max-width: 100%;
+  border: 1px solid vars.$color-border;
+  border-radius: vars.$radius-md;
+  background: vars.$color-card;
+  box-shadow: vars.$shadow-card;
+}
+
+.github-graph {
+  flex: 2 1 420px;
+  min-width: 0;
+  object-fit: cover;
+}
+
+.github-streak {
+  flex: 1 1 280px;
+  min-width: 0;
+  object-fit: contain;
+  padding: 0.6rem;
+  box-sizing: border-box;
+}
+
+.github-cta {
+  font-family: vars.$font-main;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: vars.$color-text;
+  text-decoration: none;
+  border: 1px solid vars.$color-border;
+  border-radius: 999px;
+  padding: 0.6rem 1.5rem;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+
+  &:hover {
+    border-color: vars.$color-accent;
+    background: vars.$color-accent-soft;
+    transform: translateY(-2px);
+  }
+}
+
+@media (max-width: vars.$bp-mobile) {
+  #presentation-second-container {
+    padding: 5rem 6vw 4rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
