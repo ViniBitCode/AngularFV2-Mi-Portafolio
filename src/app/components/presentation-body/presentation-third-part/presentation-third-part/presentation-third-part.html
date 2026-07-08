@@ -8,6 +8,16 @@
     </div>
 
     <form [formGroup]="consultForm">
+      <!-- Honeypot antispam: invisible para humanos, los bots lo completan -->
+      <input
+        type="text"
+        formControlName="botcheck"
+        tabindex="-1"
+        autocomplete="off"
+        aria-hidden="true"
+        style="position: absolute; left: -9999px; opacity: 0; height: 0; width: 0"
+      />
+
       <!-- NOMBRE -->
       <label for="consultant-text-input">{{ ui().contact.nameLabel }}</label>
       <input

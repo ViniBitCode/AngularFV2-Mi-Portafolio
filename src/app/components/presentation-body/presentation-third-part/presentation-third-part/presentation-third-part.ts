@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LanguageService } from '../../../../services/language.service';
-import { MailService } from '../../../../services/mailService';
+import { MailService } from '../../../../services/mail.service';
 
 @Component({
   selector: 'app-presentation-third-part',
@@ -30,6 +30,8 @@ export class PresentationThirdPart {
       Validators.minLength(10),
       Validators.maxLength(500),
     ]),
+    // Honeypot antispam: campo invisible que los bots suelen completar.
+    botcheck: new FormControl(''),
   });
 
   isSending = false;
@@ -43,9 +45,10 @@ export class PresentationThirdPart {
 
     this.mailService
       .sendMail({
-        from_name:  this.consultForm.get('full_name_consultant')?.value ?? '',
-        from_email: this.consultForm.get('email_consultant')?.value ?? '',
-        message:    this.consultForm.get('message_consultant')?.value ?? '',
+        name:     this.consultForm.get('full_name_consultant')?.value ?? '',
+        email:    this.consultForm.get('email_consultant')?.value ?? '',
+        message:  this.consultForm.get('message_consultant')?.value ?? '',
+        botcheck: this.consultForm.get('botcheck')?.value ?? '',
       })
       .subscribe({
         next: () => {

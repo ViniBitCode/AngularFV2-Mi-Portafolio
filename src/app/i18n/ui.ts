@@ -67,12 +67,11 @@ export const UI: Record<Lang, UiStrings> = {
     hero: {
       greeting: 'Hola! Soy',
       bio:
-        'Estudiante de Ingeniería en Sistemas de Información (UTN) enfocado en ' +
-        'desarrollo Backend con Java y Spring Boot. Mi paso por el soporte técnico y ' +
-        'la docencia me permitió comunicar ideas complejas de forma simple y trabajar ' +
-        'bajo presión para resolver problemas. Hoy construyo proyectos propios con la ' +
-        'meta de convertirme en desarrollador Senior Java & Angular para cuando ' +
-        'termine la carrera.',
+        'Estudiante de Ingeniería en Sistemas de Información (UTN). Me gusta ' +
+        'desarrollar aplicaciones full stack, con especial énfasis en el backend y ' +
+        'en la lógica que hace funcionar todo detrás de escena. Mi paso por el ' +
+        'soporte técnico y la docencia me permitió comunicar ideas complejas de ' +
+        'forma simple y trabajar bajo presión para resolver problemas.',
       skillsTitle: ['Mis', 'Habilidades'],
       cvButton: 'Ver mi CV',
       cvFile: '/archives/CV - Facundo H Vinitzca.pdf',
@@ -82,7 +81,7 @@ export const UI: Record<Lang, UiStrings> = {
         { type: 'cmd', text: 'cat formacion.txt' },
         { type: 'out', text: 'Ing. en Sistemas de Información @ UTN' },
         { type: 'cmd', text: 'cat objetivo.txt' },
-        { type: 'out', text: 'Ser dev Senior en Java & Angular al recibirme' },
+        { type: 'out', text: 'Crear apps full stack con foco en el backend' },
         { type: 'cmd', text: './buscando.sh' },
         { type: 'out', text: 'Primer empleo como Full Stack (Java + Angular)' },
       ],
@@ -123,7 +122,7 @@ export const UI: Record<Lang, UiStrings> = {
       error: '❌ Error al enviar. Intentá de nuevo.',
     },
     footer: {
-      tagline: 'Backend en construcción — Java, Spring Boot & Angular.',
+      tagline: 'Apps full stack, con el backend y la lógica como bandera.',
       credit: 'Hecho con Angular, SSR y ☕',
     },
   },
@@ -138,12 +137,11 @@ export const UI: Record<Lang, UiStrings> = {
     hero: {
       greeting: "Hi! I'm",
       bio:
-        'Information Systems Engineering student (UTN) focused on Backend ' +
-        'development with Java and Spring Boot. My time in tech support and ' +
-        'teaching taught me to communicate complex ideas simply and to work ' +
-        'under pressure to solve problems. Today I build my own projects with ' +
-        'the goal of becoming a Senior Java & Angular developer by the time I ' +
-        'graduate.',
+        'Information Systems Engineering student (UTN). I love building ' +
+        'full-stack applications, with a special focus on the backend and the ' +
+        'logic that makes everything work behind the scenes. My time in tech ' +
+        'support and teaching taught me to communicate complex ideas simply ' +
+        'and to work under pressure to solve problems.',
       skillsTitle: ['My', 'Skills'],
       cvButton: 'View my resume',
       cvFile: '/archives/Resume - Facundo H Vinitzca.pdf',
@@ -153,7 +151,7 @@ export const UI: Record<Lang, UiStrings> = {
         { type: 'cmd', text: 'cat education.txt' },
         { type: 'out', text: 'Information Systems Engineering @ UTN' },
         { type: 'cmd', text: 'cat goal.txt' },
-        { type: 'out', text: 'Become a Senior Java & Angular dev by graduation' },
+        { type: 'out', text: 'Build full-stack apps with a backend-first mindset' },
         { type: 'cmd', text: './job_hunting.sh' },
         { type: 'out', text: 'First job as a Full Stack dev (Java + Angular)' },
       ],
@@ -194,7 +192,7 @@ export const UI: Record<Lang, UiStrings> = {
       error: '❌ Something went wrong. Please try again.',
     },
     footer: {
-      tagline: 'Backend in the making — Java, Spring Boot & Angular.',
+      tagline: 'Full-stack apps, with backend and logic at the core.',
       credit: 'Built with Angular, SSR & ☕',
     },
   },

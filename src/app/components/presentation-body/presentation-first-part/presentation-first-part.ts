@@ -45,12 +45,13 @@ export class PresentationFirstPart {
     { name: 'Java', icon: 'icons/java_icon.svg' },
     { name: 'Spring Boot', icon: 'icons/springboot_icon.svg' },
     { name: 'Angular', icon: 'icons/angular_icon.svg' },
-    { name: 'TypeScript' },
+    { name: 'TypeScript', icon: 'icons/typescript_icon.svg' },
     { name: 'MySQL', icon: 'icons/mysql_icon.svg' },
     { name: 'C', icon: 'icons/C_icon.svg' },
-    { name: 'Docker' },
-    { name: 'Git' },
-    { name: 'HTML & CSS' },
+    { name: 'Docker', icon: 'icons/docker_icon.svg' },
+    { name: 'Git', icon: 'icons/git_icon.svg' },
+    { name: 'HTML', icon: 'icons/html5_icon.svg' },
+    { name: 'CSS', icon: 'icons/css_icon.svg' },
   ];
 
   /**

@@ -162,8 +162,8 @@ export const PROJECTS: Project[] = [
       en: 'My Portfolio',
     },
     description: {
-      es: 'Este mismo portafolio: Angular 21 con SSR, signals, tema claro/oscuro, español/inglés y formulario de contacto con EmailJS.',
-      en: 'This very portfolio: Angular 21 with SSR, signals, light/dark theme, Spanish/English and an EmailJS contact form.',
+      es: 'Este mismo portafolio: Angular 21 con SSR, signals, tema claro/oscuro, español/inglés y formulario de contacto.',
+      en: 'This very portfolio: Angular 21 with SSR, signals, light/dark theme, Spanish/English and a contact form.',
     },
     category: 'Web',
     year: 2026,

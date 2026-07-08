@@ -6,7 +6,7 @@ Portafolio personal de **Facundo Vinitzca**, hecho con **Angular 21 + SSR**.
 - 🗂️ Grilla de proyectos con filtro por categoría (signals)
 - 🌗 Tema claro / oscuro
 - 🌐 Español / Inglés
-- ✉️ Formulario de contacto con EmailJS
+- ✉️ Formulario de contacto (Web3Forms, con honeypot antispam)
 
 ## Desarrollo
 

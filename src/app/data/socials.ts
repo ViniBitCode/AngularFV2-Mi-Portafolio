@@ -1,6 +1,9 @@
 /**
  * Links de contacto/redes, tomados de la presentación de GitHub
  * (github.com/ViniBitCode). Los consumen el hero y el footer.
+ *
+ * A propósito NO hay mailto acá: el correo no se expone en el front
+ * (antispam); el canal de contacto por mail es el formulario.
  */
 export interface SocialLink {
   name: string;
@@ -18,11 +21,6 @@ export const SOCIALS: SocialLink[] = [
     name: 'LinkedIn',
     url: 'https://www.linkedin.com/in/facundo-hern%C3%A1n-vinitzca-a2bb38284',
     icon: 'icons/linkedin_icon.svg',
-  },
-  {
-    name: 'Email',
-    url: 'mailto:facundo@vinitzca.com.ar',
-    icon: 'icons/mail_icon.svg',
   },
 ];
 
