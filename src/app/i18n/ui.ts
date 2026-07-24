@@ -74,7 +74,7 @@ export const UI: Record<Lang, UiStrings> = {
         'forma simple y trabajar bajo presión para resolver problemas.',
       skillsTitle: ['Mis', 'Habilidades'],
       cvButton: 'Ver mi CV',
-      cvFile: '/archives/CV - Facundo H Vinitzca.pdf',
+      cvFile: '/archives/cv-facundo-vinitzca.pdf',
       terminal: [
         { type: 'cmd', text: 'whoami' },
         { type: 'out', text: 'Facundo Vinitzca — 22 años, Buenos Aires 🇦🇷' },
@@ -144,7 +144,7 @@ export const UI: Record<Lang, UiStrings> = {
         'and to work under pressure to solve problems.',
       skillsTitle: ['My', 'Skills'],
       cvButton: 'View my resume',
-      cvFile: '/archives/Resume - Facundo H Vinitzca.pdf',
+      cvFile: '/archives/resume-facundo-vinitzca.pdf',
       terminal: [
         { type: 'cmd', text: 'whoami' },
         { type: 'out', text: 'Facundo Vinitzca — 22 years old, Buenos Aires 🇦🇷' },
