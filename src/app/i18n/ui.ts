@@ -122,7 +122,7 @@ export const UI: Record<Lang, UiStrings> = {
       error: '❌ Error al enviar. Intentá de nuevo.',
     },
     footer: {
-      tagline: 'Apps full stack, con el backend y la lógica como bandera.',
+      tagline: 'Apps full stack, haciendo énfasis en el backend y la lógica.',
       credit: 'Hecho con Angular, SSR y ☕',
     },
   },

@@ -97,14 +97,6 @@
   }
 }
 
-.footer-credit {
-  border-top: 1px solid vars.$color-border;
-  padding: 1rem 5vw;
-  text-align: center;
-  color: vars.$color-text-dim;
-  font-size: 0.8rem;
-}
-
 @media (max-width: vars.$bp-mobile) {
   .footer-inner {
     flex-direction: column;

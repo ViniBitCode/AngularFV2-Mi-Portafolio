@@ -43,8 +43,5 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 
-# variables de entorno (usar environment.example.ts como plantilla)
-src/environments/environment.ts
-
 # contexto local del proyecto (no se sube)
 context.md
