@@ -83,7 +83,7 @@ export const UI: Record<Lang, UiStrings> = {
         { type: 'cmd', text: 'cat objetivo.txt' },
         { type: 'out', text: 'Crear apps full stack con foco en el backend' },
         { type: 'cmd', text: './buscando.sh' },
-        { type: 'out', text: 'Primer empleo como Full Stack (Java + Angular)' },
+        { type: 'out', text: 'Primer empleo como desarrollador backend o fullstack' },
       ],
     },
     projects: {
@@ -153,7 +153,7 @@ export const UI: Record<Lang, UiStrings> = {
         { type: 'cmd', text: 'cat goal.txt' },
         { type: 'out', text: 'Build full-stack apps with a backend-first mindset' },
         { type: 'cmd', text: './job_hunting.sh' },
-        { type: 'out', text: 'First job as a Full Stack dev (Java + Angular)' },
+        { type: 'out', text: 'First job as a Backend or Full Stack dev' },
       ],
     },
     projects: {
