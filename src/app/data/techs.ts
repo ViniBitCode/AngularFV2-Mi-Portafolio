@@ -18,6 +18,7 @@ export const TECHS = {
   jpa: { name: 'JPA / Hibernate' },
   springBoot: { name: 'Spring Boot', icon: 'icons/springboot_icon.svg' },
   springSecurity: { name: 'Spring Security', icon: 'icons/springsecurity_icon.svg' },
+  keycloak: { name: 'Keycloak', icon: 'icons/keycloak_icon.svg' },
   postgresql: { name: 'PostgreSQL', icon: 'icons/postgresql_icon.svg' },
   docker: { name: 'Docker', icon: 'icons/docker_icon.svg' },
   angular: { name: 'Angular', icon: 'icons/angular_icon.svg' },

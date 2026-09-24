@@ -237,4 +237,23 @@ export const PROJECTS: Project[] = [
     image: null,
     githubUrl: 'https://github.com/ViniBitCode/UTN-PDP-MiceRice-2026',
   },
+  {
+    id: 'springboot-keycloak',
+    title: {
+      es: 'API protegida con Keycloak',
+      en: 'API secured with Keycloak',
+    },
+    description: {
+      es: 'API REST en Spring Boot que delega la autenticación en Keycloak: funciona como OAuth2 Resource Server y solo valida JWT firmados con RS256. Roles compuestos (ADMIN/USER), PKCE obligatorio, sesiones stateless y CORS restringido. Front en Netlify, API en Render y Keycloak en Cloud-IAM.',
+      en: 'Spring Boot REST API that delegates authentication to Keycloak: it works as an OAuth2 Resource Server and only validates RS256-signed JWTs. Composite roles (ADMIN/USER), mandatory PKCE, stateless sessions and restricted CORS. Front on Netlify, API on Render and Keycloak on Cloud-IAM.',
+    },
+    category: 'backend',
+    tag: 'Backend',
+    year: 2026,
+    techs: [TECHS.java, TECHS.springBoot, TECHS.springSecurity, TECHS.keycloak, TECHS.docker],
+    image: null,
+    githubUrl:
+      'https://github.com/ViniBitCode/JavaFV6-SpringBoot-Security-/tree/Practica2-ApiConKeycloak',
+    liveUrl: 'https://stalwart-taffy-a1a0ac.netlify.app',
+  },
 ];
