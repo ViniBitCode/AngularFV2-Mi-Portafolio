@@ -215,7 +215,7 @@ export const PROJECTS: Project[] = [
     tag: 'Backend',
     year: 2026,
     techs: [TECHS.java, TECHS.springBoot, TECHS.springSecurity, TECHS.postgresql, TECHS.docker],
-    image: null,
+    image: 'images/1ro-seccion-java.png',
     githubUrl:
       'https://github.com/ViniBitCode/JavaFV6-SpringBoot-Security-/tree/Practica1-SecuritySimpleConFront',
     liveUrl: 'https://apisimple-1.netlify.app',
@@ -251,7 +251,7 @@ export const PROJECTS: Project[] = [
     tag: 'Backend',
     year: 2026,
     techs: [TECHS.java, TECHS.springBoot, TECHS.springSecurity, TECHS.keycloak, TECHS.docker],
-    image: null,
+    image: 'images/2do-seccion-java.png',
     githubUrl:
       'https://github.com/ViniBitCode/JavaFV6-SpringBoot-Security-/tree/Practica2-ApiConKeycloak',
     liveUrl: 'https://stalwart-taffy-a1a0ac.netlify.app',
