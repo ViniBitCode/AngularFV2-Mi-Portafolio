@@ -13,6 +13,7 @@ export const TECHS = {
   swing: { name: 'Java Swing' },
   c: { name: 'C', icon: 'icons/C_icon.svg' },
   makefile: { name: 'Makefile' },
+  wollok: { name: 'Wollok' },
   mysql: { name: 'MySQL', icon: 'icons/mysql_icon.svg' },
   jpa: { name: 'JPA / Hibernate' },
   springBoot: { name: 'Spring Boot', icon: 'icons/springboot_icon.svg' },

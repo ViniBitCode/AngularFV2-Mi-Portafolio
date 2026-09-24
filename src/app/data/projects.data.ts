@@ -220,4 +220,21 @@ export const PROJECTS: Project[] = [
       'https://github.com/ViniBitCode/JavaFV6-SpringBoot-Security-/tree/Practica1-SecuritySimpleConFront',
     liveUrl: 'https://apisimple-1.netlify.app',
   },
+  {
+    id: 'pdp-mice-rice',
+    title: {
+      es: 'PDP · Mice Rice (UTN)',
+      en: 'PDP · Mice Rice (UTN)',
+    },
+    description: {
+      es: 'Juego hecho con Wollok Game para Paradigmas de Programación (UTN): objetos, colisiones y menú por clics. Incluye una landing en Angular 21 que corre el juego en el navegador con el intérprete de wollok-ts.',
+      en: 'Game built with Wollok Game for Programming Paradigms (UTN): objects, collisions and a click-driven menu. Ships with an Angular 21 landing that runs the game in the browser using the wollok-ts interpreter.',
+    },
+    category: 'facultad',
+    tag: 'Académico',
+    year: 2026,
+    techs: [TECHS.wollok, TECHS.angular, TECHS.typescript],
+    image: null,
+    githubUrl: 'https://github.com/ViniBitCode/UTN-PDP-MiceRice-2026',
+  },
 ];
