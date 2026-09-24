@@ -8,6 +8,25 @@ import { TECHS } from './techs';
  * proyecto nuevo basta con sumar un objeto acá, con título y descripción en
  * ambos idiomas. Si el proyecto no tiene captura, dejar `image: null` y la
  * tarjeta genera un placeholder con el ícono de la tecnología principal.
+ *
+ * `category` decide la pestaña de la sección Proyectos:
+ *   - 'basicos'  → proyectos personales / de aprendizaje
+ *   - 'facultad' → trabajos prácticos de la UTN FRBA
+ *   - 'backend'  → proyectos de backend (se va completando)
+ * `tag` es el chip temático que se ve sobre la captura (Web, Juegos, ...).
+ *
+ * Ejemplo para "Backend":
+ *   {
+ *     id: 'springboot-inventario',
+ *     title: { es: 'API de Inventario', en: 'Inventory API' },
+ *     description: { es: '...', en: '...' },
+ *     category: 'backend',
+ *     tag: 'Backend',
+ *     year: 2026,
+ *     techs: [TECHS.java, TECHS.springBoot, TECHS.mysql, TECHS.docker],
+ *     image: 'images/inventario.png', // o null
+ *     githubUrl: 'https://github.com/ViniBitCode/...',
+ *   }
  */
 export const PROJECTS: Project[] = [
   {
@@ -20,7 +39,8 @@ export const PROJECTS: Project[] = [
       es: 'Mi primer sitio web: una práctica de maquetación estática multipágina con HTML y CSS puro, sin frameworks.',
       en: 'My first website: a multi-page static layout practice built with pure HTML and CSS, no frameworks.',
     },
-    category: 'Web',
+    category: 'basicos',
+    tag: 'Web',
     year: 2024,
     techs: [TECHS.html, TECHS.css],
     image: 'images/1er-proyecto-imagen.png',
@@ -37,7 +57,8 @@ export const PROJECTS: Project[] = [
       es: 'Juego de batallas por turnos hecho con Java y Swing. Aplica POO —herencia y polimorfismo— para modelar Pokémon y ataques.',
       en: 'Turn-based battle game built with Java and Swing. Applies OOP —inheritance and polymorphism— to model Pokémon and attacks.',
     },
-    category: 'Juegos',
+    category: 'basicos',
+    tag: 'Juegos',
     year: 2025,
     techs: [TECHS.java, TECHS.swing],
     image: null,
@@ -53,7 +74,8 @@ export const PROJECTS: Project[] = [
       es: 'Trabajo práctico de Sistemas Operativos (UTN) en C: manejo de memoria, punteros, sockets y compilación con Makefile.',
       en: 'Operating Systems course assignment (UTN) in C: memory management, pointers, sockets and Makefile builds.',
     },
-    category: 'Académico',
+    category: 'facultad',
+    tag: 'Académico',
     year: 2025,
     techs: [TECHS.c],
     image: null,
@@ -69,7 +91,8 @@ export const PROJECTS: Project[] = [
       es: 'El TP grupal de Sistemas Operativos (UTN): simulación de un sistema operativo distribuido en C — Kernel, CPU, Memoria e I/O como módulos independientes comunicados por sockets.',
       en: 'The Operating Systems group project (UTN): a distributed OS simulation in C — Kernel, CPU, Memory and I/O as independent modules communicating over sockets.',
     },
-    category: 'Académico',
+    category: 'facultad',
+    tag: 'Académico',
     year: 2025,
     techs: [TECHS.c, TECHS.makefile],
     image: null,
@@ -85,7 +108,8 @@ export const PROJECTS: Project[] = [
       es: 'Lobby de escritorio en Java Swing que reúne tres juegos —Ta-Te-Ti, Buscaminas y Ahorcado— con pantallas reutilizables.',
       en: 'Desktop lobby in Java Swing bundling three games —Tic-Tac-Toe, Minesweeper and Hangman— with reusable screens.',
     },
-    category: 'Juegos',
+    category: 'basicos',
+    tag: 'Juegos',
     year: 2025,
     techs: [TECHS.java, TECHS.swing],
     image: 'images/3er-proyecto-imagen.png',
@@ -101,7 +125,8 @@ export const PROJECTS: Project[] = [
       es: 'Sistema de gestión (usuarios y mascotas) con Java Swing y persistencia real en MySQL vía JPA. CRUD completo por capas.',
       en: 'Management system (users and pets) with Java Swing and real persistence in MySQL via JPA. Full layered CRUD.',
     },
-    category: 'Fullstack',
+    category: 'basicos',
+    tag: 'Fullstack',
     year: 2026,
     techs: [TECHS.java, TECHS.jpa, TECHS.mysql],
     image: 'images/4to-proyecto-imagen.png',
@@ -117,7 +142,8 @@ export const PROJECTS: Project[] = [
       es: 'Mi primer proyecto con Spring Boot: una API REST introductoria empaquetada con Docker.',
       en: 'My first Spring Boot project: an introductory REST API packaged with Docker.',
     },
-    category: 'Backend',
+    category: 'basicos',
+    tag: 'Backend',
     year: 2026,
     techs: [TECHS.java, TECHS.springBoot, TECHS.docker],
     image: 'images/5to-proyecto-imagen.png',
@@ -133,7 +159,8 @@ export const PROJECTS: Project[] = [
       es: 'API REST con Spring Boot, JPA y Lombok sobre MySQL, aplicando programación funcional y contenerizada con Docker.',
       en: 'REST API with Spring Boot, JPA and Lombok on MySQL, applying functional programming and containerized with Docker.',
     },
-    category: 'Backend',
+    category: 'basicos',
+    tag: 'Backend',
     year: 2026,
     techs: [TECHS.java, TECHS.springBoot, TECHS.mysql, TECHS.docker],
     image: 'images/6to-proyecto-imagen.png',
@@ -149,7 +176,8 @@ export const PROJECTS: Project[] = [
       es: 'Primer proyecto con Angular: un login conectado a una API propia hecha en Spring Boot. Front y back trabajando juntos.',
       en: 'First Angular project: a login connected to my own Spring Boot API. Front and back working together.',
     },
-    category: 'Fullstack',
+    category: 'basicos',
+    tag: 'Fullstack',
     year: 2026,
     techs: [TECHS.angular, TECHS.typescript, TECHS.springBoot],
     image: 'images/7mo-proyecto-imagen.png',
@@ -165,11 +193,31 @@ export const PROJECTS: Project[] = [
       es: 'Este mismo portafolio: Angular 21 con SSR, signals, tema claro/oscuro, español/inglés y formulario de contacto.',
       en: 'This very portfolio: Angular 21 with SSR, signals, light/dark theme, Spanish/English and a contact form.',
     },
-    category: 'Web',
+    category: 'basicos',
+    tag: 'Web',
     year: 2026,
     techs: [TECHS.angular, TECHS.typescript],
     image: 'images/8vo-proyecto-imagen.png',
     githubUrl: 'https://github.com/ViniBitCode/AngularFV2-Mi-Portafolio',
     featured: true,
+  },
+  {
+    id: 'springboot-security',
+    title: {
+      es: 'API con Spring Security',
+      en: 'API with Spring Security',
+    },
+    description: {
+      es: 'API REST de usuarios, roles y permisos protegida con Spring Security: BCrypt, autorización por rol y permiso, sesiones stateless y PostgreSQL. Desplegada en Render + Neon con front en Angular.',
+      en: 'REST API for users, roles and permissions secured with Spring Security: BCrypt, role- and permission-based authorization, stateless sessions and PostgreSQL. Deployed on Render + Neon with an Angular front end.',
+    },
+    category: 'backend',
+    tag: 'Backend',
+    year: 2026,
+    techs: [TECHS.java, TECHS.springBoot, TECHS.springSecurity, TECHS.postgresql, TECHS.docker],
+    image: null,
+    githubUrl:
+      'https://github.com/ViniBitCode/JavaFV6-SpringBoot-Security-/tree/Practica1-SecuritySimpleConFront',
+    liveUrl: 'https://apisimple-1.netlify.app',
   },
 ];

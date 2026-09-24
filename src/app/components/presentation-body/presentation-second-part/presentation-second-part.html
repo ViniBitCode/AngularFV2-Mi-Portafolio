@@ -8,54 +8,56 @@
 
   <p class="section-subtitle">{{ ui().projects.subtitle }}</p>
 
-  <div class="filters" role="tablist" aria-label="Filtros">
-    @for (filter of filters; track filter) {
+  <!-- Pestañas: Básicos / Facultad / Backend (navegables con flechas) -->
+  <div
+    class="tabs"
+    role="tablist"
+    [attr.aria-label]="ui().projects.tabsLabel"
+    (keydown)="onTabKeydown($event)"
+  >
+    @for (category of categories; track category) {
       <button
         type="button"
-        class="filter-chip"
         role="tab"
-        [class.active]="activeFilter() === filter"
-        [attr.aria-selected]="activeFilter() === filter"
-        (click)="setFilter(filter)"
+        class="tab"
+        [id]="'tab-' + category"
+        [class.active]="activeCategory() === category"
+        [attr.aria-selected]="activeCategory() === category"
+        [attr.aria-controls]="'panel-' + category"
+        [tabindex]="activeCategory() === category ? 0 : -1"
+        (click)="select(category)"
       >
-        {{ filterLabel(filter) }}
+        <span class="tab-label">{{ ui().projects.tabs[category] }}</span>
+        <span class="tab-count" aria-hidden="true">{{ counts[category] }}</span>
       </button>
     }
   </div>
 
-  <div class="projects-grid">
-    @for (project of filteredProjects(); track project.id) {
-      <app-project-card [project]="project" />
+  <div
+    class="tab-panel"
+    role="tabpanel"
+    [id]="'panel-' + activeCategory()"
+    [attr.aria-labelledby]="'tab-' + activeCategory()"
+    tabindex="0"
+  >
+    @if (visibleProjects().length > 0) {
+      <div class="projects-grid">
+        @for (project of visibleProjects(); track project.id) {
+          <app-project-card [project]="project" />
+        }
+      </div>
+    } @else {
+      <!-- Estado vacío estilo "pantalla de carga" -->
+      <div class="empty-state" aria-live="polite">
+        <p class="empty-title">{{ ui().projects.comingSoon }}</p>
+        <p class="empty-loading">
+          {{ ui().projects.loading }}<span class="empty-dots" aria-hidden="true"></span>
+        </p>
+        <div class="empty-bar" aria-hidden="true">
+          <span class="empty-bar-fill"></span>
+        </div>
+        <p class="empty-hint">{{ ui().projects.emptyHint }}</p>
+      </div>
     }
-  </div>
-
-  <!-- Puente con mi presentación de GitHub -->
-  <div class="github-strip">
-    <h3 class="github-strip-title">
-      {{ ui().projects.githubTitle[0] }}
-      <span class="accent">{{ ui().projects.githubTitle[1] }}</span>
-    </h3>
-    <div class="github-strip-cards">
-      <img
-        class="github-graph"
-        src="https://github-readme-activity-graph.vercel.app/graph?username=ViniBitCode&theme=tokyo-night&hide_border=true&area=true"
-        alt="GitHub activity graph — ViniBitCode"
-        loading="lazy"
-      />
-      <img
-        class="github-streak"
-        src="https://streak-stats.demolab.com/?user=ViniBitCode&theme=tokyonight&hide_border=true"
-        alt="GitHub streak — ViniBitCode"
-        loading="lazy"
-      />
-    </div>
-    <a
-      class="github-cta"
-      [href]="githubUrl"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {{ ui().projects.githubCta }}
-    </a>
   </div>
 </section>

@@ -1,51 +1,84 @@
 // =============================================================
-//  Design tokens del portafolio
+//  Design tokens del portafolio (estética retro / arcade 8-bit)
 //
-//  Los COLORES viven como CSS custom properties en styles.scss
-//  (:root = tema oscuro, [data-theme='light'] = tema claro) para
-//  poder cambiar de tema en runtime. Acá se exponen como variables
-//  SCSS para que los componentes las consuman con un nombre corto.
+//  Los COLORES, FUENTES y ESPACIADOS viven como CSS custom
+//  properties en styles.scss (:root = tema oscuro por default,
+//  [data-theme='light'] = variante "cartucho/papel"). Acá se
+//  exponen como variables SCSS para consumirlos con un nombre corto.
+//
+//  Para ajustar el estilo: tocar SOLO styles.scss (valores) o este
+//  archivo (nombres). Los componentes no deberían hardcodear colores.
+//
+//  OJO: son `var()` de runtime, no compilan con funciones SCSS de
+//  color (rgba(vars.$color-x, .5) NO funciona). Para translúcidos hay
+//  tokens dedicados.
 //
 //  Importar con `@use '...variables' as vars;`
 // =============================================================
 
-// ---- Colores (referencias a los tokens de tema) ----
+// ---- Colores: fondos ----
 $color-bg: var(--color-bg);
 $color-surface: var(--color-surface);
 $color-surface-2: var(--color-surface-2);
 $color-card: var(--color-card);
 
-$color-accent: var(--color-accent);
-$color-accent-strong: var(--color-accent-strong);
+// ---- Colores: paleta arcade (saturados) ----
+$color-accent: var(--color-accent);            // principal (cian)
 $color-accent-hover: var(--color-accent-hover);
+$color-accent-2: var(--color-accent-2);        // magenta
+$color-accent-3: var(--color-accent-3);        // amarillo
+$color-accent-4: var(--color-accent-4);        // verde fósforo
+$color-accent-strong: var(--color-accent-strong);
 $color-accent-soft: var(--color-accent-soft);
 $color-accent-border: var(--color-accent-border);
 
+// ---- Colores: texto y bordes ----
 $color-text: var(--color-text);
 $color-text-muted: var(--color-text-muted);
 $color-text-dim: var(--color-text-dim);
+$color-text-on-accent: var(--color-text-on-accent);
 $color-border: var(--color-border);
+$color-shadow: var(--color-shadow);
 
+// ---- Colores: superficies translúcidas ----
 $color-header-bg: var(--color-header-bg);
 $color-section-1: var(--color-section-1);
 $color-section-2: var(--color-section-2);
 $color-form-bg: var(--color-form-bg);
 $color-overlay: var(--color-overlay);
 
+// ---- Colores: estado ----
 $color-success: var(--color-success);
 $color-error: var(--color-error);
 
 // ---- Tipografía ----
-$font-main: 'Funnel Display', sans-serif;
+$font-pixel: var(--font-pixel); // títulos, botones, navegación
+$font-mono: var(--font-mono);   // texto largo (legible)
+$font-main: $font-mono;         // alias de compatibilidad
 
-// ---- Radios ----
-$radius-sm: 8px;
-$radius-md: 14px;
-$radius-lg: 22px;
+$fs-body: var(--fs-body);
+$fs-body-lg: var(--fs-body-lg);
+$fs-small: var(--fs-small);
+$fs-pixel-xs: var(--fs-pixel-xs);
+$fs-pixel-sm: var(--fs-pixel-sm);
+$fs-pixel-md: var(--fs-pixel-md);
+$fs-pixel-lg: var(--fs-pixel-lg);
+$fs-pixel-xl: var(--fs-pixel-xl);
 
-// ---- Sombras ----
-$shadow-card: var(--shadow-card);
-$shadow-card-hover: var(--shadow-card-hover);
+// ---- Espaciados ----
+$space-1: var(--space-1);
+$space-2: var(--space-2);
+$space-3: var(--space-3);
+$space-4: var(--space-4);
+$space-5: var(--space-5);
+$space-6: var(--space-6);
+$space-7: var(--space-7);
+
+// ---- Bordes pixel / sombras duras ----
+$border-w: var(--border-w);
+$shadow-offset: var(--shadow-offset);
+$shadow-offset-sm: var(--shadow-offset-sm);
+$radius: 0; // nada redondeado en 8-bit
 
 // ---- Breakpoints (compile-time, no pueden ser custom properties) ----
 $bp-mobile: 640px;

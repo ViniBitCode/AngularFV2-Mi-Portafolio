@@ -1,0 +1,168 @@
+@use '../../../styles/variables' as vars;
+@use '../../../styles/mixin' as mix;
+
+.lightbox {
+  // El <dialog> en sí es transparente; el marco visible es .lightbox-frame.
+  background: transparent;
+  border: none;
+  padding: 0;
+  max-width: min(96vw, 1100px);
+  max-height: 94vh;
+  overflow: visible;
+  color: vars.$color-text;
+  font-family: vars.$font-mono;
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.82);
+    // Scanlines también sobre el backdrop.
+    background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0px,
+      rgba(0, 0, 0, 0) 2px,
+      rgba(0, 0, 0, 0.35) 3px,
+      rgba(0, 0, 0, 0.35) 4px
+    );
+  }
+
+  &[open] .lightbox-frame {
+    animation: pop-in 0.18s steps(3) both;
+  }
+}
+
+@keyframes pop-in {
+  from {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.lightbox-frame {
+  @include mix.hard-box(vars.$color-accent, 8px);
+  display: flex;
+  flex-direction: column;
+  background: vars.$color-card;
+  max-height: 94vh;
+}
+
+// ---- Barra de título (estilo ventana) ----
+.lightbox-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: vars.$space-4;
+  padding: vars.$space-3 vars.$space-4;
+  background: vars.$color-accent;
+  color: vars.$color-text-on-accent;
+  border-bottom: vars.$border-w solid vars.$color-border;
+}
+
+.lightbox-title {
+  font-family: vars.$font-pixel;
+  font-size: vars.$fs-pixel-xs;
+  line-height: 1.6;
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lightbox-close {
+  @include mix.pixel-button(vars.$color-accent-2, #ffffff, vars.$color-border);
+  padding: 0.5rem 0.7rem;
+  flex-shrink: 0;
+}
+
+// ---- Imagen ----
+.lightbox-media {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  background: vars.$color-surface-2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: vars.$space-3;
+
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: calc(94vh - 170px);
+    object-fit: contain;
+    border: 2px solid vars.$color-border;
+  }
+}
+
+// ---- Pie ----
+.lightbox-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: vars.$space-3 vars.$space-4;
+  padding: vars.$space-3 vars.$space-4;
+  border-top: vars.$border-w solid vars.$color-border;
+}
+
+.lightbox-caption {
+  font-size: vars.$fs-body;
+  color: vars.$color-text-muted;
+}
+
+.lightbox-institution {
+  color: vars.$color-accent;
+}
+
+.lightbox-actions {
+  display: flex;
+  align-items: center;
+  gap: vars.$space-4;
+  flex-wrap: wrap;
+}
+
+.lightbox-credential {
+  @include mix.pixel-button-ghost;
+  padding: 0.55rem 0.8rem;
+}
+
+.lightbox-nav {
+  display: flex;
+  align-items: center;
+  gap: vars.$space-3;
+
+  button {
+    @include mix.pixel-button-ghost;
+    padding: 0.55rem 0.7rem;
+  }
+}
+
+.lightbox-counter {
+  font-family: vars.$font-pixel;
+  font-size: vars.$fs-pixel-xs;
+  color: vars.$color-accent-3;
+  min-width: 4.5em;
+  text-align: center;
+}
+
+@media (max-width: vars.$bp-mobile) {
+  .lightbox {
+    max-width: 100vw;
+  }
+
+  .lightbox-frame {
+    box-shadow: none;
+  }
+
+  .lightbox-footer {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .lightbox-actions {
+    justify-content: center;
+  }
+}

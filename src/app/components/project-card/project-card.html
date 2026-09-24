@@ -6,6 +6,7 @@
         [src]="image"
         [alt]="project().title[lang()]"
         loading="lazy"
+        decoding="async"
       />
     } @else {
       <div class="card-placeholder">
@@ -15,7 +16,7 @@
         <span>{{ project().techs[0].name }}</span>
       </div>
     }
-    <span class="card-category">{{ ui().projects.categories[project().category] }}</span>
+    <span class="card-tag">{{ ui().projects.tags[project().tag] }}</span>
   </div>
 
   <div class="card-body">

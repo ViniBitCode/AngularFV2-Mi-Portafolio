@@ -1,20 +1,15 @@
 <footer id="footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <span class="footer-name">Facundo Vinitzca<span class="footer-dash">_</span></span>
-      <p class="footer-tagline">{{ ui().footer.tagline }}</p>
+      <span class="footer-name">Facundo Vinitzca<span class="footer-dash" aria-hidden="true">_</span></span>
     </div>
 
     <nav class="footer-nav" aria-label="Footer">
-      <button type="button" (click)="navigate('presentation-first-container')">
-        {{ ui().nav.about }}
-      </button>
-      <button type="button" (click)="navigate('presentation-second-container')">
-        {{ ui().nav.projects }}
-      </button>
-      <button type="button" (click)="navigate('presentation-third-container')">
-        {{ ui().nav.contact }}
-      </button>
+      @for (item of navItems; track item.sectionId) {
+        <button type="button" (click)="navigate(item.sectionId)">
+          {{ ui().nav[item.key] }}
+        </button>
+      }
     </nav>
 
     <ul class="footer-socials">
@@ -33,4 +28,11 @@
       }
     </ul>
   </div>
+
+  <p class="footer-credit">
+    © {{ currentYear }} · {{ ui().footer.credit }}
+    <a class="footer-credit-link" [href]="ui().footer.brandUrl" target="_blank" rel="noopener noreferrer">
+      {{ ui().footer.brandName }}
+    </a>
+  </p>
 </footer>

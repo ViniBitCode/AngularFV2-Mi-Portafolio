@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { GITHUB_PROFILE_URL } from '../../../data/socials';
-import { ProjectCategory } from '../../../models/project.model';
+import { PROJECT_CATEGORIES, ProjectCategory } from '../../../models/project.model';
 import { LanguageService } from '../../../services/language.service';
 import { ProjectsService } from '../../../services/projects.service';
 import { ProjectCard } from '../../project-card/project-card';
 
-type Filter = 'all' | ProjectCategory;
-
 /**
- * Sección "Proyectos": grilla responsive de tarjetas con filtro por categoría.
- * Los datos vienen de ProjectsService; el filtrado es reactivo vía signals y
- * las etiquetas de los filtros se traducen según el idioma activo.
+ * Sección "Proyectos": pestañas por categoría (Básicos / Facultad / Backend)
+ * con una grilla responsive de tarjetas. Los datos vienen de ProjectsService;
+ * la pestaña activa es un signal y las etiquetas se traducen según el idioma.
+ *
+ * Si una categoría no tiene proyectos (p. ej. Backend al principio) se muestra
+ * un estado "Próximamente / Loading..." en lugar de la grilla.
  */
 @Component({
   selector: 'app-presentation-second-part',
@@ -23,28 +23,50 @@ export class PresentationSecondPart {
   private readonly projectsService = inject(ProjectsService);
   private readonly langService = inject(LanguageService);
 
-  readonly githubUrl = GITHUB_PROFILE_URL;
   readonly ui = this.langService.ui;
 
-  private readonly projects = this.projectsService.getProjects();
+  readonly categories = PROJECT_CATEGORIES;
+  readonly activeCategory = signal<ProjectCategory>('basicos');
 
-  readonly filters: Filter[] = ['all', ...this.projectsService.getCategories()];
-  readonly activeFilter = signal<Filter>('all');
+  /** Cantidad de proyectos por pestaña (para el contador del tab). */
+  readonly counts: Record<ProjectCategory, number> = Object.fromEntries(
+    PROJECT_CATEGORIES.map((c) => [c, this.projectsService.getByCategory(c).length]),
+  ) as Record<ProjectCategory, number>;
 
-  readonly filteredProjects = computed(() => {
-    const filter = this.activeFilter();
-    return filter === 'all'
-      ? this.projects
-      : this.projects.filter((p) => p.category === filter);
-  });
+  readonly visibleProjects = computed(() =>
+    this.projectsService.getByCategory(this.activeCategory()),
+  );
 
-  setFilter(filter: Filter): void {
-    this.activeFilter.set(filter);
+  select(category: ProjectCategory): void {
+    this.activeCategory.set(category);
   }
 
-  filterLabel(filter: Filter): string {
-    return filter === 'all'
-      ? this.ui().projects.filterAll
-      : this.ui().projects.categories[filter];
+  /** Navegación con teclado según el patrón WAI-ARIA para tabs. */
+  onTabKeydown(event: KeyboardEvent): void {
+    const current = this.categories.indexOf(this.activeCategory());
+    const last = this.categories.length - 1;
+    let next: number | null = null;
+
+    switch (event.key) {
+      case 'ArrowRight':
+        next = current === last ? 0 : current + 1;
+        break;
+      case 'ArrowLeft':
+        next = current === 0 ? last : current - 1;
+        break;
+      case 'Home':
+        next = 0;
+        break;
+      case 'End':
+        next = last;
+        break;
+    }
+
+    if (next === null) return;
+    event.preventDefault();
+
+    const category = this.categories[next];
+    this.select(category);
+    document.getElementById(`tab-${category}`)?.focus();
   }
 }

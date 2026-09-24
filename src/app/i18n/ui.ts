@@ -1,4 +1,4 @@
-import { ProjectCategory } from '../models/project.model';
+import { ProjectCategory, ProjectTag } from '../models/project.model';
 import { Lang, TerminalLine } from './lang';
 
 /**
@@ -13,7 +13,13 @@ export interface UiStrings {
     brand: string;
     about: string;
     projects: string;
+    courses: string;
     contact: string;
+    menu: string;
+    openMenu: string;
+    closeMenu: string;
+    toLight: string;
+    toDark: string;
   };
   hero: {
     greeting: string;
@@ -26,12 +32,27 @@ export interface UiStrings {
   projects: {
     title: [string, string];
     subtitle: string;
-    filterAll: string;
-    categories: Record<ProjectCategory, string>;
+    tabsLabel: string;
+    tabs: Record<ProjectCategory, string>;
+    tags: Record<ProjectTag, string>;
     code: string;
     demo: string;
-    githubTitle: [string, string];
-    githubCta: string;
+    comingSoon: string;
+    loading: string;
+    emptyHint: string;
+  };
+  courses: {
+    title: [string, string];
+    subtitle: string;
+    emptyTitle: string;
+    emptyHint: string;
+    open: string;
+    certificateAlt: string;
+    lightboxLabel: string;
+    close: string;
+    prev: string;
+    next: string;
+    credential: string;
   };
   contact: {
     title: [string, string];
@@ -51,8 +72,9 @@ export interface UiStrings {
     error: string;
   };
   footer: {
-    tagline: string;
     credit: string;
+    brandName: string;
+    brandUrl: string;
   };
 }
 
@@ -62,7 +84,13 @@ export const UI: Record<Lang, UiStrings> = {
       brand: 'Mi Portafolio',
       about: 'Sobre mi',
       projects: 'Proyectos',
+      courses: 'Cursos',
       contact: 'Contacto',
+      menu: 'Navegación principal',
+      openMenu: 'Abrir menú',
+      closeMenu: 'Cerrar menú',
+      toLight: 'Tema claro',
+      toDark: 'Tema oscuro',
     },
     hero: {
       greeting: 'Hola! Soy',
@@ -91,8 +119,13 @@ export const UI: Record<Lang, UiStrings> = {
       subtitle:
         'Un recorrido por lo que fui construyendo: de mis primeras páginas estáticas a ' +
         'APIs con Spring Boot y apps full stack con Angular.',
-      filterAll: 'Todos',
-      categories: {
+      tabsLabel: 'Categorías de proyectos',
+      tabs: {
+        basicos: 'Básicos',
+        facultad: 'Facultad',
+        backend: 'Backend',
+      },
+      tags: {
         Web: 'Web',
         Juegos: 'Juegos',
         Backend: 'Backend',
@@ -101,8 +134,22 @@ export const UI: Record<Lang, UiStrings> = {
       },
       code: 'Código',
       demo: 'Ver demo',
-      githubTitle: ['Mi actividad en', 'GitHub'],
-      githubCta: 'Ver mi perfil completo en GitHub →',
+      comingSoon: 'Próximamente',
+      loading: 'Loading',
+      emptyHint: 'Nuevos proyectos en camino. Insert coin para continuar.',
+    },
+    courses: {
+      title: ['Mis', 'Cursos'],
+      subtitle: 'Certificados de los cursos y formaciones que fui completando.',
+      emptyTitle: 'Sin certificados cargados',
+      emptyHint: 'Todavía no hay cursos para mostrar. Pronto se desbloquean.',
+      open: 'Ver certificado',
+      certificateAlt: 'Certificado:',
+      lightboxLabel: 'Certificado ampliado',
+      close: 'Cerrar',
+      prev: 'Certificado anterior',
+      next: 'Certificado siguiente',
+      credential: 'Validar certificado',
     },
     contact: {
       title: ['Contacta', 'conmigo'],
@@ -122,8 +169,9 @@ export const UI: Record<Lang, UiStrings> = {
       error: '❌ Error al enviar. Intentá de nuevo.',
     },
     footer: {
-      tagline: 'Apps full stack, haciendo énfasis en el backend y la lógica.',
-      credit: 'Hecho con Angular, SSR y ☕',
+      credit: 'Un producto de',
+      brandName: 'Bits 4 Bytes',
+      brandUrl: 'https://b4b.com.ar',
     },
   },
 
@@ -132,7 +180,13 @@ export const UI: Record<Lang, UiStrings> = {
       brand: 'My Portfolio',
       about: 'About me',
       projects: 'Projects',
+      courses: 'Courses',
       contact: 'Contact',
+      menu: 'Main navigation',
+      openMenu: 'Open menu',
+      closeMenu: 'Close menu',
+      toLight: 'Light theme',
+      toDark: 'Dark theme',
     },
     hero: {
       greeting: "Hi! I'm",
@@ -161,8 +215,13 @@ export const UI: Record<Lang, UiStrings> = {
       subtitle:
         'A tour of what I have been building: from my first static pages to ' +
         'Spring Boot APIs and full-stack apps with Angular.',
-      filterAll: 'All',
-      categories: {
+      tabsLabel: 'Project categories',
+      tabs: {
+        basicos: 'Basics',
+        facultad: 'University',
+        backend: 'Backend',
+      },
+      tags: {
         Web: 'Web',
         Juegos: 'Games',
         Backend: 'Backend',
@@ -171,8 +230,22 @@ export const UI: Record<Lang, UiStrings> = {
       },
       code: 'Code',
       demo: 'Live demo',
-      githubTitle: ['My activity on', 'GitHub'],
-      githubCta: 'See my full GitHub profile →',
+      comingSoon: 'Coming soon',
+      loading: 'Loading',
+      emptyHint: 'New projects on the way. Insert coin to continue.',
+    },
+    courses: {
+      title: ['My', 'Courses'],
+      subtitle: 'Certificates from the courses and trainings I have completed.',
+      emptyTitle: 'No certificates yet',
+      emptyHint: 'There are no courses to show yet. Unlocking soon.',
+      open: 'View certificate',
+      certificateAlt: 'Certificate:',
+      lightboxLabel: 'Enlarged certificate',
+      close: 'Close',
+      prev: 'Previous certificate',
+      next: 'Next certificate',
+      credential: 'Verify certificate',
     },
     contact: {
       title: ['Get in', 'touch'],
@@ -192,8 +265,9 @@ export const UI: Record<Lang, UiStrings> = {
       error: '❌ Something went wrong. Please try again.',
     },
     footer: {
-      tagline: 'Full-stack apps, with backend and logic at the core.',
-      credit: 'Built with Angular, SSR & ☕',
+      credit: 'A product of',
+      brandName: 'Bits 4 Bytes',
+      brandUrl: 'https://b4b.com.ar',
     },
   },
 };

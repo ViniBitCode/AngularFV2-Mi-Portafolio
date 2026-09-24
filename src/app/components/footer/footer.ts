@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { SOCIALS } from '../../data/socials';
 import { LanguageService } from '../../services/language.service';
 import { ScrollService } from '../../services/scroll.service';
+import { NAV_ITEMS } from '../header/header';
 
 /**
  * Pie de página: identidad, navegación rápida, links sociales y créditos.
@@ -18,6 +19,7 @@ export class Footer {
 
   readonly ui = this.langService.ui;
   readonly socials = SOCIALS;
+  readonly navItems = NAV_ITEMS;
   readonly currentYear = new Date().getFullYear();
 
   navigate(id: string): void {

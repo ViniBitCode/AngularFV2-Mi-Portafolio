@@ -1,0 +1,49 @@
+<section id="courses-container">
+  <div class="section-heading">
+    <h2>
+      {{ ui().courses.title[0] }}
+      <span class="accent">{{ ui().courses.title[1] }}</span>
+    </h2>
+  </div>
+
+  <p class="section-subtitle">{{ ui().courses.subtitle }}</p>
+
+  @if (courses.length > 0) {
+    <ul class="courses-grid">
+      @for (course of courses; track course.id; let i = $index) {
+        <li>
+          <!-- Toda la tarjeta es un botón: abre el certificado en el lightbox -->
+          <button
+            type="button"
+            class="course-card"
+            (click)="open(i)"
+            [attr.aria-label]="ui().courses.open + ': ' + course.name + ' (' + course.institution + ')'"
+          >
+            <span class="course-thumb">
+              <img
+                [src]="imageUrl(course)"
+                [alt]="ui().courses.certificateAlt + ' ' + course.name + ' — ' + course.institution"
+                loading="lazy"
+                decoding="async"
+              />
+            </span>
+            <span class="course-body">
+              <span class="course-name">{{ course.name }}</span>
+              <span class="course-institution">{{ course.institution }}</span>
+              <time class="course-date" [attr.datetime]="course.date">{{ formatDate(course.date) }}</time>
+            </span>
+          </button>
+        </li>
+      }
+    </ul>
+
+    <app-certificate-lightbox [courses]="courses" />
+  } @else {
+    <!-- Estado vacío: todavía no hay certificados en courses.data.ts -->
+    <div class="empty-state">
+      <div class="empty-icon" aria-hidden="true">?</div>
+      <p class="empty-title">{{ ui().courses.emptyTitle }}</p>
+      <p class="empty-hint">{{ ui().courses.emptyHint }}</p>
+    </div>
+  }
+</section>

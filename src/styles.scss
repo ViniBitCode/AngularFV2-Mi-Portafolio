@@ -1,78 +1,134 @@
 @use './styles/variables' as vars;
-@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap');
+@use './styles/mixin' as mix;
 
 // =============================================================
-//  Tokens de tema. El tema oscuro es el default (:root);
-//  ThemeService alterna `data-theme="light"` en <html>.
+//  TOKENS DE DISEÑO — estética retro / arcade 8-bit.
+//
+//  Este es el ÚNICO lugar donde se definen valores de colores,
+//  fuentes y espaciados. Cambiá acá y todo el sitio acompaña.
+//
+//  :root                = tema oscuro (default, "gabinete arcade")
+//  [data-theme='light'] = tema claro ("cartucho / manual de papel")
+//  ThemeService alterna `data-theme` en <html>.
 // =============================================================
 :root {
-  --color-bg: #0b0e1a;
-  --color-surface: #1e293b;
-  --color-surface-2: #0b1120;
-  --color-card: #131a2e;
+  // ---- Fondos ----
+  --color-bg: #0d0b1e;
+  --color-surface: #1a1633;
+  --color-surface-2: #120f26;
+  --color-card: #171335;
 
-  --color-accent: #5a5af8;
-  --color-accent-strong: #3e339c;
-  --color-accent-hover: #6d6df9;
-  --color-accent-soft: rgba(90, 90, 248, 0.15);
-  --color-accent-border: rgba(90, 90, 248, 0.35);
+  // ---- Paleta arcade (limitada, saturada) ----
+  --color-accent: #00e5ff; // cian
+  --color-accent-hover: #5ff0ff;
+  --color-accent-2: #ff2d95; // magenta
+  --color-accent-3: #ffd400; // amarillo
+  --color-accent-4: #39ff14; // verde fósforo
+  --color-accent-strong: #00a8bd;
+  --color-accent-soft: rgba(0, 229, 255, 0.12);
+  --color-accent-border: rgba(0, 229, 255, 0.45);
 
-  --color-text: #ffffff;
-  --color-text-muted: #c0c0c0;
-  --color-text-dim: #8a94a7;
-  --color-border: rgba(255, 255, 255, 0.12);
+  // ---- Texto / bordes ----
+  --color-text: #f4f4ff;
+  --color-text-muted: #c2c2dc;
+  --color-text-dim: #9090b4;
+  --color-text-on-accent: #0d0b1e;
+  --color-border: #f4f4ff;
+  --color-shadow: #000000;
 
-  --color-header-bg: rgba(11, 17, 32, 0.6);
-  --color-section-1: rgba(30, 41, 59, 0.5);
-  --color-section-2: rgba(11, 17, 32, 0.6);
-  --color-form-bg: rgba(19, 26, 46, 0.8);
-  --color-overlay: rgba(11, 14, 26, 0.72);
+  // ---- Superficies translúcidas ----
+  --color-header-bg: rgba(13, 11, 30, 0.92);
+  --color-section-1: rgba(26, 22, 51, 0.45);
+  --color-section-2: rgba(13, 11, 30, 0.6);
+  --color-form-bg: #171335;
+  --color-overlay: rgba(13, 11, 30, 0.85);
 
-  --color-success: #7ee787;
-  --color-error: #ff8080;
+  // ---- Estado ----
+  --color-success: #39ff14;
+  --color-error: #ff5c5c;
 
-  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.35);
-  --shadow-card-hover: 0 18px 45px rgba(90, 90, 248, 0.25);
+  // ---- Tipografía ----
+  --font-pixel: 'Press Start 2P', 'Courier New', monospace;
+  --font-mono: 'VT323', 'Consolas', 'Courier New', monospace;
+
+  // VT323 es chica y fina: el cuerpo va más grande de lo habitual.
+  --fs-body: 1.3rem;
+  --fs-body-lg: 1.45rem;
+  --fs-small: 1.1rem;
+
+  // Press Start 2P es ancha: los títulos van más chicos de lo habitual.
+  --fs-pixel-xs: 0.62rem;
+  --fs-pixel-sm: 0.75rem;
+  --fs-pixel-md: 0.95rem;
+  --fs-pixel-lg: clamp(1.1rem, 2.6vw, 1.6rem);
+  --fs-pixel-xl: clamp(1.25rem, 3.4vw, 2.1rem);
+
+  // ---- Espaciados ----
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2.5rem;
+  --space-7: 4rem;
+
+  // ---- Bordes pixel / sombras duras ----
+  --border-w: 3px;
+  --shadow-offset: 5px;
+  --shadow-offset-sm: 3px;
+
+  // ---- Efecto CRT (0 = apagado) ----
+  --scanline-opacity: 0.08;
+
+  color-scheme: dark;
 }
 
 [data-theme='light'] {
-  --color-bg: #eef1f8;
-  --color-surface: #ffffff;
-  --color-surface-2: #e2e8f4;
-  --color-card: #ffffff;
+  --color-bg: #f3e9d2;
+  --color-surface: #fffaf0;
+  --color-surface-2: #e9dcbf;
+  --color-card: #fff8e7;
 
-  --color-accent: #4f46e5;
-  --color-accent-strong: #c7d2fe;
-  --color-accent-hover: #4338ca;
-  --color-accent-soft: rgba(79, 70, 229, 0.1);
-  --color-accent-border: rgba(79, 70, 229, 0.3);
+  --color-accent: #0057c8;
+  --color-accent-hover: #0a6ae6;
+  --color-accent-2: #d0006f;
+  --color-accent-3: #a86400;
+  --color-accent-4: #157a15;
+  --color-accent-strong: #0057c8;
+  --color-accent-soft: rgba(0, 87, 200, 0.1);
+  --color-accent-border: rgba(0, 87, 200, 0.4);
 
-  --color-text: #0f172a;
-  --color-text-muted: #334155;
-  --color-text-dim: #64748b;
-  --color-border: rgba(15, 23, 42, 0.14);
+  --color-text: #1a1433;
+  --color-text-muted: #3d3560;
+  --color-text-dim: #5f5880;
+  --color-text-on-accent: #ffffff;
+  --color-border: #1a1433;
+  --color-shadow: #1a1433;
 
-  --color-header-bg: rgba(255, 255, 255, 0.75);
-  --color-section-1: rgba(255, 255, 255, 0.55);
-  --color-section-2: rgba(226, 232, 244, 0.6);
-  --color-form-bg: rgba(255, 255, 255, 0.9);
-  --color-overlay: rgba(255, 255, 255, 0.85);
+  --color-header-bg: rgba(243, 233, 210, 0.94);
+  --color-section-1: rgba(255, 250, 240, 0.5);
+  --color-section-2: rgba(233, 220, 191, 0.45);
+  --color-form-bg: #fff8e7;
+  --color-overlay: rgba(243, 233, 210, 0.9);
 
-  --color-success: #15803d;
-  --color-error: #b91c1c;
+  --color-success: #157a15;
+  --color-error: #b3001b;
 
-  --shadow-card: 0 10px 30px rgba(15, 23, 42, 0.08);
-  --shadow-card-hover: 0 18px 45px rgba(79, 70, 229, 0.18);
+  --scanline-opacity: 0.04;
+
+  color-scheme: light;
 }
 
-// Los íconos sociales son SVG blancos: en tema claro se invierten a negro.
-// (Regla global: alcanza a los componentes por encima del encapsulation.)
+// Los íconos sociales son SVG blancos: en tema claro se invierten a oscuro.
 [data-theme='light'] .social-links img,
 [data-theme='light'] .github-link img,
 [data-theme='light'] .footer-socials img {
   filter: invert(1);
 }
 
+// =============================================================
+//  Reset
+// =============================================================
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -82,52 +138,105 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-	display: block;
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-
 blockquote, q {
-	quotes: none;
+  quotes: none;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
-	content: none;
+  content: '';
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-// ---- Base ----
+// =============================================================
+//  Base
+// =============================================================
 html {
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-	background-color: vars.$color-bg;
-	color: vars.$color-text;
-	font-family: vars.$font-main;
-	line-height: 1.5;
-	-webkit-font-smoothing: antialiased;
+  background-color: vars.$color-bg;
+  // Cuadrícula sutil de fondo (look de tablero/pantalla).
+  background-image:
+    linear-gradient(vars.$color-accent-soft 1px, transparent 1px),
+    linear-gradient(90deg, vars.$color-accent-soft 1px, transparent 1px);
+  background-size: 32px 32px;
+  color: vars.$color-text;
+  font-family: vars.$font-mono;
+  font-size: vars.$fs-body;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+// Scanlines CRT: overlay fijo, no bloquea clics, muy tenue.
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 1) 3px,
+    rgba(0, 0, 0, 1) 4px
+  );
+  opacity: var(--scanline-opacity);
 }
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4 {
+  font-family: vars.$font-pixel;
+}
+
+::selection {
+  background: vars.$color-accent-2;
+  color: #ffffff;
+}
+
+// Foco visible y consistente para navegación con teclado.
+:focus-visible {
+  outline: 3px solid vars.$color-accent-3;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

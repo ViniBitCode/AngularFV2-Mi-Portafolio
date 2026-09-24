@@ -1,42 +1,60 @@
-<section id="header">
-    <div class="left-text">
-        <h1>{{ ui().nav.brand }}</h1>
-        <span class="left-text-dash">_</span>
+<header id="header">
+  <div class="brand">
+    <span class="brand-text">{{ ui().nav.brand }}</span>
+    <span class="brand-cursor" aria-hidden="true">_</span>
+  </div>
+
+  <!-- Hamburguesa: sólo visible en pantallas chicas -->
+  <button
+    class="menu-toggle"
+    type="button"
+    (click)="toggleMenu()"
+    [attr.aria-expanded]="menuOpen()"
+    aria-controls="main-nav"
+    [attr.aria-label]="menuOpen() ? ui().nav.closeMenu : ui().nav.openMenu"
+  >
+    <span aria-hidden="true">{{ menuOpen() ? 'X' : '≡' }}</span>
+  </button>
+
+  <nav id="main-nav" class="nav" [class.nav--open]="menuOpen()" [attr.aria-label]="ui().nav.menu">
+    <ul class="nav-links">
+      @for (item of navItems; track item.sectionId) {
+        <li>
+          <button type="button" class="nav-link" (click)="navigate(item.sectionId)">
+            {{ ui().nav[item.key] }}
+          </button>
+        </li>
+      }
+    </ul>
+
+    <div class="header-toggles">
+      <button
+        class="toggle-btn"
+        type="button"
+        (click)="langService.toggle()"
+        [attr.aria-label]="langService.lang() === 'es' ? 'Switch to English' : 'Cambiar a español'"
+      >
+        {{ langService.lang() === 'es' ? 'EN' : 'ES' }}
+      </button>
+      <button
+        class="toggle-btn"
+        type="button"
+        (click)="themeService.toggle()"
+        [attr.aria-label]="themeService.theme() === 'dark' ? ui().nav.toLight : ui().nav.toDark"
+      >
+        <span aria-hidden="true">{{ themeService.theme() === 'dark' ? '☀' : '☾' }}</span>
+      </button>
     </div>
 
-    <div class="right-text">
-        <button (click)="navigate('presentation-first-container')"> {{ ui().nav.about }} </button>
-        <button (click)="navigate('presentation-second-container')"> {{ ui().nav.projects }} </button>
-        <button (click)="navigate('presentation-third-container')"> {{ ui().nav.contact }} </button>
-
-        <div class="header-toggles">
-          <button
-            class="toggle-btn"
-            type="button"
-            (click)="langService.toggle()"
-            [attr.aria-label]="langService.lang() === 'es' ? 'Switch to English' : 'Cambiar a español'"
-          >
-            {{ langService.lang() === 'es' ? 'EN' : 'ES' }}
-          </button>
-          <button
-            class="toggle-btn"
-            type="button"
-            (click)="themeService.toggle()"
-            [attr.aria-label]="themeService.theme() === 'dark' ? 'Tema claro' : 'Tema oscuro'"
-          >
-            {{ themeService.theme() === 'dark' ? '☀️' : '🌙' }}
-          </button>
-        </div>
-
-        <a
-          class="github-link"
-          [href]="githubUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-          title="GitHub"
-        >
-          <img src="icons/github_icon.svg" alt="GitHub" />
-        </a>
-    </div>
-</section>
+    <a
+      class="github-link"
+      [href]="githubUrl"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="GitHub"
+      title="GitHub"
+    >
+      <img src="icons/github_icon.svg" alt="" aria-hidden="true" />
+    </a>
+  </nav>
+</header>

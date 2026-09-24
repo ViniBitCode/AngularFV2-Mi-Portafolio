@@ -1,36 +1,170 @@
 @use 'variables' as vars;
 
-// Encabezado de sección: "Mis <Proyectos>" con el acento en la 2da palabra.
+// =============================================================
+//  Mixins retro / 8-bit
+// =============================================================
+
+// Borde "pixelado": 4 sombras planas desplazadas en cada eje forman un
+// borde con las esquinas recortadas (look de sprite).
+@mixin pixel-border($color: vars.$color-border, $w: vars.$border-w) {
+  border: none;
+  border-radius: 0;
+  box-shadow:
+    0 calc(-1 * #{$w}) 0 0 #{$color},
+    0 #{$w} 0 0 #{$color},
+    calc(-1 * #{$w}) 0 0 0 #{$color},
+    #{$w} 0 0 0 #{$color};
+}
+
+// Caja con borde sólido y sombra dura (tarjetas y paneles).
+@mixin hard-box($border: vars.$color-border, $offset: vars.$shadow-offset) {
+  border: vars.$border-w solid #{$border};
+  border-radius: 0;
+  box-shadow: #{$offset} #{$offset} 0 0 vars.$color-shadow;
+}
+
+// Botón "presionable": sombra dura que desaparece al apretar.
+@mixin pixel-button(
+  $bg: vars.$color-accent,
+  $fg: vars.$color-text-on-accent,
+  $border: vars.$color-border
+) {
+  font-family: vars.$font-pixel;
+  font-size: vars.$fs-pixel-xs;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #{$fg};
+  background: #{$bg};
+  border: vars.$border-w solid #{$border};
+  border-radius: 0;
+  box-shadow: vars.$shadow-offset vars.$shadow-offset 0 0 vars.$color-shadow;
+  padding: 0.85rem 1.2rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition:
+    transform 0.08s steps(2),
+    box-shadow 0.08s steps(2),
+    filter 0.15s ease;
+
+  &:hover {
+    filter: brightness(1.1);
+    transform: translate(-1px, -1px);
+    box-shadow: calc(#{vars.$shadow-offset} + 1px) calc(#{vars.$shadow-offset} + 1px) 0 0
+      vars.$color-shadow;
+  }
+
+  &:active {
+    transform: translate(vars.$shadow-offset, vars.$shadow-offset);
+    box-shadow: 0 0 0 0 vars.$color-shadow;
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    filter: none;
+    transform: none;
+    box-shadow: vars.$shadow-offset vars.$shadow-offset 0 0 vars.$color-shadow;
+  }
+}
+
+// Variante "fantasma" (fondo de superficie, texto normal).
+@mixin pixel-button-ghost {
+  @include pixel-button(vars.$color-surface, vars.$color-text, vars.$color-border);
+
+  &:hover {
+    border-color: vars.$color-accent;
+    color: vars.$color-accent;
+  }
+}
+
+// Encabezado de sección: "MIS <PROYECTOS>" con el acento en la 2da palabra.
 @mixin section-heading {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.6rem;
   color: vars.$color-text;
-  font-family: vars.$font-main;
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  font-weight: 700;
+  font-family: vars.$font-pixel;
+  font-size: vars.$fs-pixel-lg;
+  line-height: 1.5;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 3px 3px 0 vars.$color-shadow;
 
   .accent {
     color: vars.$color-accent;
   }
 }
 
-// Botón con el estilo de acento del sitio.
-@mixin accent-button {
-  font-family: vars.$font-main;
-  font-size: 1rem;
-  color: #ffffff;
-  background: vars.$color-accent;
-  border: none;
-  border-radius: vars.$radius-sm;
-  padding: 0.7rem 1.4rem;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px vars.$color-accent-soft;
-    background: vars.$color-accent-hover;
+// Glitch sutil al hover (sólo si el usuario no pide movimiento reducido).
+@mixin glitch-hover {
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover {
+      animation: glitch 0.3s steps(2) 1;
+    }
   }
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow:
+      2px 0 vars.$color-accent-2,
+      -2px 0 vars.$color-accent;
+    transform: translate(1px, 0);
+  }
+  50% {
+    text-shadow:
+      -2px 0 vars.$color-accent-2,
+      2px 0 vars.$color-accent;
+    transform: translate(-1px, 0);
+  }
+  100% {
+    text-shadow: none;
+    transform: translate(0, 0);
+  }
+}
+
+// Cursor de bloque parpadeante (para títulos).
+@mixin blink-cursor($color: vars.$color-accent) {
+  &::after {
+    content: '';
+    display: inline-block;
+    width: 0.55em;
+    height: 1em;
+    margin-left: 0.25em;
+    background: #{$color};
+    vertical-align: -0.1em;
+    animation: cursor-blink 1s step-start infinite;
+  }
+}
+
+@keyframes cursor-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+// Chip / badge 8-bit (skills, techs).
+@mixin pixel-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: vars.$font-mono;
+  font-size: vars.$fs-body;
+  line-height: 1;
+  color: vars.$color-text;
+  background: vars.$color-accent-soft;
+  border: 2px solid vars.$color-accent-border;
+  border-radius: 0;
+  padding: 0.35rem 0.7rem;
 }

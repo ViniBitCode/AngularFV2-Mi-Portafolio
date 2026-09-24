@@ -1,69 +1,64 @@
 @use '../../../styles/variables' as vars;
+@use '../../../styles/mixin' as mix;
 
 #footer {
   background: vars.$color-surface-2;
-  border-top: 2px solid vars.$color-accent-strong;
-  font-family: vars.$font-main;
+  border-top: vars.$border-w solid vars.$color-accent;
+  font-family: vars.$font-mono;
 }
 
 .footer-inner {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 2.5rem 5vw 2rem;
+  padding: vars.$space-6 5vw vars.$space-5;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
+  gap: vars.$space-5;
   flex-wrap: wrap;
 }
 
 .footer-brand {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: vars.$space-2;
 }
 
 .footer-name {
   color: vars.$color-text;
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-family: vars.$font-pixel;
+  font-size: vars.$fs-pixel-sm;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 0 vars.$color-shadow;
 }
 
 .footer-dash {
   color: vars.$color-accent;
-  animation: dash-loop 0.8s step-start infinite;
+  animation: cursor-blink 0.9s step-start infinite;
 }
 
-@keyframes dash-loop {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-.footer-tagline {
-  color: vars.$color-text-dim;
-  font-size: 0.88rem;
-}
 
 .footer-nav {
   display: flex;
-  gap: 1.4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: vars.$space-4;
 
   button {
+    @include mix.glitch-hover;
     background: transparent;
     border: none;
     cursor: pointer;
-    font-family: vars.$font-main;
-    font-size: 0.92rem;
+    font-family: vars.$font-pixel;
+    font-size: vars.$fs-pixel-xs;
+    text-transform: uppercase;
     color: vars.$color-text-muted;
-    transition: color 0.2s ease;
+    padding: 0.4rem 0;
+    transition: color 0.15s ease;
 
-    &:hover {
-      color: vars.$color-text;
+    &:hover,
+    &:focus-visible {
+      color: vars.$color-accent;
     }
   }
 }
@@ -71,23 +66,30 @@
 .footer-socials {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: vars.$space-3;
   list-style: none;
 
   a {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 38px;
-    height: 38px;
-    border: 1px solid vars.$color-border;
-    border-radius: 50%;
-    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    width: 40px;
+    height: 40px;
+    background: vars.$color-surface;
+    border: 2px solid vars.$color-border;
+    box-shadow: vars.$shadow-offset-sm vars.$shadow-offset-sm 0 0 vars.$color-shadow;
+    transition:
+      transform 0.08s steps(2),
+      box-shadow 0.08s steps(2),
+      border-color 0.15s ease;
 
     &:hover {
       border-color: vars.$color-accent;
-      background: vars.$color-accent-soft;
-      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translate(vars.$shadow-offset-sm, vars.$shadow-offset-sm);
+      box-shadow: none;
     }
   }
 
@@ -95,6 +97,13 @@
     width: 18px;
     height: 18px;
   }
+}
+
+.footer-credit {
+  text-align: center;
+  color: vars.$color-text-dim;
+  font-size: vars.$fs-small;
+  padding: 0 5vw vars.$space-5;
 }
 
 @media (max-width: vars.$bp-mobile) {
@@ -105,5 +114,24 @@
 
   .footer-brand {
     align-items: center;
+  }
+}
+
+.footer-credit-link {
+  @include mix.glitch-hover;
+  display: inline-block;
+  font-family: vars.$font-pixel;
+  font-size: vars.$fs-pixel-xs;
+  text-transform: uppercase;
+  color: vars.$color-accent;
+  text-decoration: none;
+  border-bottom: 2px solid vars.$color-accent;
+  padding-bottom: 2px;
+  margin-left: 0.2rem;
+
+  &:hover,
+  &:focus-visible {
+    color: vars.$color-accent-3;
+    border-color: vars.$color-accent-3;
   }
 }

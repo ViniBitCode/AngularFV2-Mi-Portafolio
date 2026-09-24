@@ -1,12 +1,14 @@
 @use '../../../styles/variables' as vars;
+@use '../../../styles/mixin' as mix;
+
+$header-h: 64px;
 
 #header {
-  height: 10vh;
-  min-height: 56px;
+  height: $header-h;
   width: 100%;
-  border-bottom: 2px solid vars.$color-accent-strong;
   background-color: vars.$color-header-bg;
-  backdrop-filter: blur(10px);
+  border-bottom: vars.$border-w solid vars.$color-accent;
+  box-shadow: 0 vars.$shadow-offset-sm 0 0 vars.$color-shadow;
   position: fixed;
   top: 0;
   z-index: 1000;
@@ -14,95 +16,195 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1.5rem;
-  box-sizing: border-box;
+  gap: vars.$space-4;
+  padding: 0 vars.$space-5;
 }
 
-.left-text {
+// ---- Marca ----
+.brand {
   display: inline-flex;
   align-items: center;
   color: vars.$color-text;
-  font-family: vars.$font-main;
-  font-size: clamp(1rem, 1.5vw, 1.4rem);
+  font-family: vars.$font-pixel;
+  font-size: vars.$fs-pixel-sm;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-shadow: 2px 2px 0 vars.$color-shadow;
 }
 
-.left-text-dash {
-  margin-left: 1px;
-  animation: dash-loop 0.8s step-start infinite;
+.brand-cursor {
+  color: vars.$color-accent;
+  margin-left: 2px;
+  animation: cursor-blink 0.9s step-start infinite;
 }
 
-@keyframes dash-loop {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-.right-text {
+// ---- Navegación ----
+.nav {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: clamp(0.6rem, 2vw, 2rem);
+  gap: clamp(0.8rem, 2vw, 1.8rem);
 }
 
-.right-text > button {
-  background-color: transparent;
-  height: 10vh;
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.4rem, 1.5vw, 1.2rem);
+  list-style: none;
+}
+
+.nav-link {
+  @include mix.glitch-hover;
+  background: transparent;
   border: none;
   cursor: pointer;
-  transition: color 0.2s ease;
-
-  font-family: vars.$font-main;
-  font-size: clamp(0.8rem, 1vw, 1rem);
+  font-family: vars.$font-pixel;
+  font-size: vars.$fs-pixel-xs;
+  text-transform: uppercase;
   color: vars.$color-text-muted;
+  padding: 0.5rem 0.2rem;
+  position: relative;
+  transition: color 0.15s ease;
 
-  &:hover {
+  &::before {
+    content: '>';
+    color: vars.$color-accent-3;
+    margin-right: 0.35rem;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  &:hover,
+  &:focus-visible {
     color: vars.$color-text;
+
+    &::before {
+      opacity: 1;
+    }
   }
 }
 
 .header-toggles {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: vars.$space-2;
 }
 
-// Botones de idioma y tema: pills compactas, no heredan el alto del nav.
-.right-text .toggle-btn {
-  height: auto;
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: vars.$color-text-muted;
-  background: transparent;
-  border: 1px solid vars.$color-border;
-  border-radius: 999px;
-  padding: 0.35rem 0.7rem;
+// Mini botón presionable (idioma, tema, hamburguesa, GitHub).
+@mixin pixel-mini-button {
+  font-family: vars.$font-pixel;
+  font-size: vars.$fs-pixel-xs;
+  line-height: 1;
+  color: vars.$color-text;
+  background: vars.$color-surface;
+  border: 2px solid vars.$color-border;
+  border-radius: 0;
+  box-shadow: vars.$shadow-offset-sm vars.$shadow-offset-sm 0 0 vars.$color-shadow;
+  min-width: 2.4rem;
+  height: 2.2rem;
+  padding: 0 0.5rem;
   cursor: pointer;
-  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.08s steps(2),
+    box-shadow 0.08s steps(2),
+    color 0.15s ease,
+    border-color 0.15s ease;
 
   &:hover {
-    color: vars.$color-text;
+    color: vars.$color-accent;
     border-color: vars.$color-accent;
-    background: vars.$color-accent-soft;
   }
+
+  &:active {
+    transform: translate(vars.$shadow-offset-sm, vars.$shadow-offset-sm);
+    box-shadow: none;
+  }
+}
+
+.toggle-btn {
+  @include pixel-mini-button;
 }
 
 .github-link {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  opacity: 0.75;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  background: vars.$color-surface;
+  border: 2px solid vars.$color-border;
+  box-shadow: vars.$shadow-offset-sm vars.$shadow-offset-sm 0 0 vars.$color-shadow;
+  transition:
+    transform 0.08s steps(2),
+    box-shadow 0.08s steps(2),
+    border-color 0.15s ease;
 
   &:hover {
-    opacity: 1;
-    transform: translateY(-1px);
+    border-color: vars.$color-accent;
+  }
+
+  &:active {
+    transform: translate(vars.$shadow-offset-sm, vars.$shadow-offset-sm);
+    box-shadow: none;
   }
 
   img {
-    width: 22px;
-    height: 22px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+// ---- Hamburguesa (oculta en desktop) ----
+.menu-toggle {
+  @include pixel-mini-button;
+  display: none;
+  font-size: 1.1rem;
+  font-family: vars.$font-mono;
+  width: 2.4rem;
+}
+
+// ---- Responsive: menú desplegable ----
+@media (max-width: vars.$bp-tablet) {
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: calc(#{$header-h} + #{vars.$shadow-offset-sm});
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: vars.$space-4;
+    padding: vars.$space-5;
+    background: vars.$color-surface-2; // sólido: no se mezcla con el contenido
+    border-bottom: vars.$border-w solid vars.$color-accent;
+    box-shadow: 0 vars.$shadow-offset-sm 0 0 vars.$color-shadow;
+
+    &--open {
+      display: flex;
+    }
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: vars.$space-2;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: left;
+    padding: 0.7rem 0.4rem;
+    border-bottom: 2px solid vars.$color-surface;
+  }
+
+  .header-toggles,
+  .github-link {
+    align-self: flex-start;
   }
 }

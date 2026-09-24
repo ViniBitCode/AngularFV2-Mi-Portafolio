@@ -12,8 +12,8 @@ export class ProjectsService {
     return [...PROJECTS].sort((a, b) => b.year - a.year);
   }
 
-  /** Categorías presentes, en el orden en que aparecen los proyectos. */
-  getCategories(): ProjectCategory[] {
-    return [...new Set(PROJECTS.map((p) => p.category))];
+  /** Proyectos de una categoría (pestaña), del más reciente al más antiguo. */
+  getByCategory(category: ProjectCategory): Project[] {
+    return this.getProjects().filter((p) => p.category === category);
   }
 }

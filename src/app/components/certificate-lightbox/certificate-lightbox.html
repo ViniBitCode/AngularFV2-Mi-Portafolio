@@ -1,0 +1,65 @@
+<!--
+  <dialog> nativo: showModal() trae foco atrapado, Escape para cerrar y
+  backdrop sin código extra. El clic sobre el backdrop también cierra.
+-->
+<dialog
+  #dialog
+  class="lightbox"
+  [attr.aria-label]="ui().courses.lightboxLabel"
+  (close)="onClosed()"
+  (click)="onBackdropClick($event)"
+  (keydown)="onKeydown($event)"
+>
+  @if (current(); as course) {
+    <div class="lightbox-frame">
+      <div class="lightbox-bar">
+        <span class="lightbox-title">{{ course.name }}</span>
+        <button
+          type="button"
+          class="lightbox-close"
+          (click)="close()"
+          [attr.aria-label]="ui().courses.close"
+        >
+          <span aria-hidden="true">X</span>
+        </button>
+      </div>
+
+      <div class="lightbox-media">
+        <img
+          [src]="imageUrl(course)"
+          [alt]="ui().courses.certificateAlt + ' ' + course.name + ' — ' + course.institution"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <div class="lightbox-footer">
+        <p class="lightbox-caption">
+          <span class="lightbox-institution">{{ course.institution }}</span>
+          <span aria-hidden="true"> · </span>
+          <time [attr.datetime]="course.date">{{ formatDate(course.date) }}</time>
+        </p>
+
+        <div class="lightbox-actions">
+          @if (course.credentialUrl; as url) {
+            <a class="lightbox-credential" [href]="url" target="_blank" rel="noopener noreferrer">
+              {{ ui().courses.credential }}
+            </a>
+          }
+
+          @if (total() > 1) {
+            <div class="lightbox-nav">
+              <button type="button" (click)="prev()" [attr.aria-label]="ui().courses.prev">
+                <span aria-hidden="true">&lt;</span>
+              </button>
+              <span class="lightbox-counter" aria-live="polite">{{ index() + 1 }} / {{ total() }}</span>
+              <button type="button" (click)="next()" [attr.aria-label]="ui().courses.next">
+                <span aria-hidden="true">&gt;</span>
+              </button>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</dialog>
